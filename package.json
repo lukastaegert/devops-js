@@ -1,0 +1,16 @@
+{
+  "name": "devops-js-talk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "web-dev-server --watch --open"
+  },
+  "keywords": [],
+  "author": "Lukas Taegert-Atkinson",
+  "license": "ISC",
+  "dependencies": {
+    "@web/dev-server": "^0.1.5",
+    "reveal.js": "^4.1.0"
+  }
+}
