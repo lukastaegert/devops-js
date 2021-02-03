@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Own your build step—own your code</title>
     <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/simple.css">
     <link rel="stylesheet" href="node_modules/reveal.js/plugin/highlight/zenburn.css">
     <link rel="stylesheet" href="styles.css">
@@ -12,9 +13,22 @@
 <div class="reveal">
     <div class="slides">
         <section>
-            <h1>Own your build step</h1>
-            <h1>—</h1>
-            <h1>own your code</h1>
+            <h2>Own your build step</h2>
+            <h2>—</h2>
+            <h2>own your code</h2>
+        </section>
+        <section>
+            <h2>Mock & replace files</h2>
+            <textarea code-mirror="first.config">export default {
+  input: 'main.js',
+  output: {
+    format: 'cjs'
+  }
+}</textarea>
+            <label for="first.main">/main.js</label>
+            <textarea code-mirror="first.input" id="first.main">export default {foo: 'Bars'}</textarea>
+            <button onclick="rollUp('first')">ROLL</button>
+            <textarea code-mirror="first.output"></textarea>
         </section>
     </div>
 </div>
@@ -28,6 +42,146 @@
         progress: true,
         plugins: [RevealHighlight, RevealNotes]
     });
+</script>
+<script src="node_modules/codemirror/lib/codemirror.js"></script>
+<script src="node_modules/codemirror/mode/javascript/javascript.js"></script>
+<script src="https://unpkg.com/rollup/dist/rollup.browser.js"></script>
+<script>
+    var codeMirrorInstances = [];
+    var code = {};
+    for (const element of document.querySelectorAll('[code-mirror]')) {
+        const codeMirrorInstance = CodeMirror.fromTextArea(element, {
+            mode: "javascript"
+        });
+        codeMirrorInstances.push(codeMirrorInstance);
+        const [session, type] = element.getAttribute('code-mirror').split('.');
+        const sessionObject = code[session] = code[session] || {};
+        if (type === 'input') {
+            sessionObject.files = sessionObject.files || {};
+            const id = document.querySelector(`label[for="${(element.id)}"]`).textContent
+            sessionObject.files[id] = codeMirrorInstance
+        } else {
+            sessionObject[type] = codeMirrorInstance
+        }
+    }
+    Reveal.on('resize', resizeCodeWindows);
+    setTimeout(resizeCodeWindows());
+
+    function resizeCodeWindows() {
+        const scaleFactorMatch = document.querySelector('.slides').style.transform.match(/scale\(([^)]+)\)/);
+        const scaleFactor = scaleFactorMatch ? Number(scaleFactorMatch[1]) : 1;
+        for (const cursor of document.querySelectorAll('.slides .CodeMirror-cursors, .CodeMirror-measure:nth-child(2) + div')) {
+            cursor.style.transform = `scale(${1 / scaleFactor})`;
+            cursor.style.transformOrigin = `0 0`;
+        }
+        for (const instance of codeMirrorInstances) {
+            instance.refresh();
+        }
+    }
+
+    async function getRolledUpCode(options) {
+        const bundle = await rollup.rollup(options);
+        return(await bundle.generate(options.output)).output[0].code;
+    }
+
+    async function getConfigObject(codeMirrorId) {
+        const output = await getRolledUpCode({
+            input: 'main',
+            treeshake: false,
+            plugins: [{
+                resolveId(id) {
+                    return id;
+                },
+                load(id) {
+                    return code[codeMirrorId].config.getValue();
+                }
+            }],
+            output: {format: 'cjs', exports: 'named'}
+        })
+        const runCode = new Function('module', 'exports', output);
+        const module = {exports: {}}
+        runCode(module, module.exports)
+        return module.exports.default
+    }
+
+    async function rollUp(codeMirrorId) {
+        const inputFiles = code[codeMirrorId].files
+        const config = await getConfigObject(codeMirrorId);
+        config.plugins = config.plugins || [];
+        config.plugins.push({
+            name: 'presentation-plugin',
+            resolveId(source, importer) {
+                if (importer !== undefined && !isAbsolute(source) && source[0] !== '.') return null;
+                return addJsExtensionIfNecessary(
+                        importer ? resolve(dirname(importer), source) : resolve(source), inputFiles
+                )
+            },
+            load(id) {
+                const codeMirror = inputFiles[id];
+                if (codeMirror) {
+                    return codeMirror.getValue()
+                }
+            }
+        });
+        const output = await getRolledUpCode(config)
+        code[codeMirrorId].output.setValue(output.trim())
+    }
+
+    function addJsExtensionIfNecessary(file, inputFiles) {
+        let testedFile = file;
+        if (inputFiles[file]) return testedFile;
+        testedFile = `${file}.mjs`
+        if (inputFiles[file]) return testedFile;
+        testedFile = `${file}.js`
+        if (inputFiles[file]) return testedFile;
+        return file;
+    }
+
+    function resolve(...paths) {
+        let firstPathSegment = paths.shift();
+        if (!firstPathSegment) {
+            return '/';
+        }
+        if (firstPathSegment[0] !== '/') {
+            firstPathSegment = `/${firstPathSegment}`
+        }
+        let resolvedParts = (firstPathSegment === '/' ? [''] : firstPathSegment.split(/[/\\]/));
+
+        for (const path of paths) {
+            if (isAbsolute(path)) {
+                resolvedParts = path.split(/[/\\]/);
+            } else {
+                const parts = path.split(/[/\\]/);
+
+                while (parts[0] === '.' || parts[0] === '..') {
+                    const part = parts.shift();
+                    if (part === '..') {
+                        resolvedParts.pop();
+                    }
+                }
+
+                resolvedParts.push.apply(resolvedParts, parts);
+            }
+        }
+
+        return resolvedParts.join('/');
+    }
+
+    function dirname(path) {
+        const match = /[\/\\][^/\\]*$/.exec(path);
+        if (!match) return '.';
+
+        const dir = path.slice(0, -match[0].length);
+
+        // If `dir` is the empty string, we're at root.
+        return dir ? dir : '/';
+    }
+
+    const absolutePath = /^(?:\/|(?:[A-Za-z]:)?[\\|/])/;
+
+    function isAbsolute(path) {
+        return absolutePath.test(path);
+    }
 </script>
 </body>
 </html>
