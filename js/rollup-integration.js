@@ -1,37 +1,8 @@
 import { rollup } from 'https://unpkg.com/rollup/dist/es/rollup.browser.js';
 import { dirname, isAbsolute, resolve } from './path.js';
-import { code } from './setup.js';
 
-async function getRolledUpCode(options) {
-  const bundle = await rollup(options);
-  return (await bundle.generate(options.output)).output[0].code;
-}
-
-async function getConfigObject(codeMirrorId) {
-  const output = await getRolledUpCode({
-    input: 'main',
-    treeshake: false,
-    plugins: [
-      {
-        resolveId(id) {
-          return id;
-        },
-        load(id) {
-          return code[codeMirrorId].config.getValue();
-        }
-      }
-    ],
-    output: { format: 'cjs', exports: 'named' }
-  });
-  const runCode = new Function('module', 'exports', output);
-  const module = { exports: {} };
-  runCode(module, module.exports);
-  return module.exports.default;
-}
-
-window.rollUpCode = async function (codeMirrorId) {
-  const inputFiles = code[codeMirrorId].files;
-  const config = await getConfigObject(codeMirrorId);
+export async function rollUpPage(configCodeMirror, inputFiles) {
+  const config = await getConfigObject(configCodeMirror);
   config.plugins = config.plugins || [];
   config.plugins.push({
     name: 'presentation-plugin',
@@ -49,9 +20,39 @@ window.rollUpCode = async function (codeMirrorId) {
       }
     }
   });
-  const output = await getRolledUpCode(config);
-  code[codeMirrorId].output.setValue(output.trim());
-};
+  return await getRolledUpCode(config);
+}
+
+async function getRolledUpCode(options) {
+  const bundle = await rollup(options);
+  const output = (await bundle.generate(options.output)).output;
+  for (const file of output) {
+    file.code = file.code.trim();
+  }
+  return output;
+}
+
+async function getConfigObject(config) {
+  const [{ code: output }] = await getRolledUpCode({
+    input: 'main',
+    treeshake: false,
+    plugins: [
+      {
+        resolveId(id) {
+          return id;
+        },
+        load(id) {
+          return config.getValue();
+        }
+      }
+    ],
+    output: { format: 'cjs', exports: 'named' }
+  });
+  const runCode = new Function('module', 'exports', output);
+  const module = { exports: {} };
+  runCode(module, module.exports);
+  return module.exports.default;
+}
 
 function addJsExtensionIfNecessary(file, inputFiles) {
   let testedFile = file;

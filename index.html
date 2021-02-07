@@ -18,28 +18,20 @@
           <h2>own your code</h2>
         </section>
         <section>
-          <h2>Mock & replace files</h2>
-          <textarea code-mirror="first.config">
-export default {
-  input: 'main.js',
-  output: {
-    format: 'es'
-  }
-}</textarea
-          >
-          <label for="first.main">/main.js</label>
-          <textarea code-mirror="first.input" id="first.main">
-import { importantFunction } from './dangerous.js'
-importantFunction();</textarea
-          >
-          <label for="first.dangerous">/dangerous.js</label>
-          <textarea code-mirror="first.input" id="first.dangerous">
-export function importantFunction() {
-  console.log('This is not good for my build');
-}</textarea
-          >
-          <button onclick="rollUpCode('first')">ROLL</button>
-          <textarea code-mirror="first.output"></textarea>
+          <h3>Mock & replace files</h3>
+          <rollup-page code-sample="mockFiles"></rollup-page>
+        </section>
+        <section>
+          <h3>Patch up files</h3>
+          <rollup-page code-sample="patchFiles"></rollup-page>
+        </section>
+        <section>
+          <h2>Module life-cycle</h2>
+          <div>Image showing how it works</div>
+        </section>
+        <section>
+          <h3>Add virtual modules</h3>
+          <rollup-page code-sample="virtualFiles"></rollup-page>
         </section>
       </div>
     </div>
@@ -50,6 +42,5 @@ export function importantFunction() {
     <script src="node_modules/codemirror/lib/codemirror.js"></script>
     <script src="node_modules/codemirror/mode/javascript/javascript.js"></script>
     <script src="js/setup.js" type="module"></script>
-    <script src="js/rollup-integration.js" type="module" defer></script>
   </body>
 </html>

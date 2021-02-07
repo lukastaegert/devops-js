@@ -1,9 +1,30 @@
+:root {
+  --code-font-size: 20px;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
 .reveal .CodeMirror pre {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 .CodeMirror {
-    box-shadow: 0 5px 15px rgba(0, 0, 0 , 15%);
-    font-size: 20px;
-    height: unset;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+  font-size: var(--code-font-size);
+  height: unset;
+}
+
+.file-container > label {
+  font-size: var(--code-font-size);
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+  gap: 20px;
+}
+
+.column {
 }
