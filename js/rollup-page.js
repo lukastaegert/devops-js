@@ -26,15 +26,28 @@ class RollupPage extends HTMLElement {
     const rollupButton = document.createElement('button');
     rollupButton.innerText = 'ROLLUP';
     rollupButton.onclick = async () => {
-      this._removeColumn(this._input);
+      this._input.column.remove();
+      if (this._output) {
+        this._removeColumn(this._output);
+      }
       const output = await rollUpPage(this._config, this._input.files);
-      this._output = this._createColumnFromCode(output);
+      this._output = this._createColumnFromCode(output, true);
       this._resizeCodeMirrors();
     };
     configColumn.column.appendChild(rollupButton);
+    const showInputButton = document.createElement('button');
+    showInputButton.innerText = 'SHOW INPUT';
+    showInputButton.onclick = async () => {
+      if (this._output) {
+        this._removeColumn(this._output);
+        this._output = null;
+      }
+      this._columnContainer.appendChild(this._input.column);
+    };
+    configColumn.column.appendChild(showInputButton);
   }
 
-  _createColumnFromCode(codeSamples) {
+  _createColumnFromCode(codeSamples, isOutput) {
     const column = document.createElement('div');
     column.setAttribute('class', 'column');
     const output = {
@@ -42,7 +55,7 @@ class RollupPage extends HTMLElement {
       files: {}
     };
     for (const { fileName, code } of codeSamples) {
-      output.files[fileName] = this._addFileContainer(column, fileName, code);
+      output.files[fileName] = this._addFileContainer(column, fileName, code, isOutput);
     }
     this._columnContainer.appendChild(column);
     return output;
@@ -59,22 +72,24 @@ class RollupPage extends HTMLElement {
     columnContent.column.remove();
   }
 
-  _addFileContainer(parent, fileName, code) {
+  _addFileContainer(parent, fileName, code, isOutput) {
     const fileContainer = document.createElement('div');
     fileContainer.setAttribute('class', 'file-container');
     fileContainer.innerHTML = `<label>${fileName}</label>`;
     parent.appendChild(fileContainer);
-    return this._createCodeMirror(fileContainer, code);
+    return this._createCodeMirror(fileContainer, code, isOutput);
   }
 
-  _createCodeMirror(parent, value) {
+  _createCodeMirror(parent, value, isOutput) {
     const codeMirror = CodeMirror(
       element => {
         parent.appendChild(element);
       },
       {
         mode: 'javascript',
+        readOnly: isOutput && 'nocursor',
         tabSize: 2,
+        theme: `default${isOutput ? ' rolled' : ''}`,
         value
       }
     );
@@ -93,7 +108,7 @@ class RollupPage extends HTMLElement {
         this._refreshCodeMirrors();
       }
     });
-    this._refreshCodeMirrors();
+    this._resizeCodeMirrors();
   }
 
   _resizeCodeMirrors() {

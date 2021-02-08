@@ -1,5 +1,11 @@
 export const codeSamples = {
   mockFiles: {
+    configInit: `export default {
+  input: 'main.js',
+  output: {
+    format: 'es'
+  }
+}`,
     config: `export default {
   input: 'main.js',
   output: {
@@ -9,7 +15,7 @@ export const codeSamples = {
     input: [
       {
         fileName: '/main.js',
-        code: `import { foo } from './dangerous.js'
+        code: `import { foo } from './dangerous.js';
 foo();`
       },
       {

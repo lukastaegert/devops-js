@@ -16,6 +16,10 @@
   height: unset;
 }
 
+.cm-s-rolled.CodeMirror {
+  background: #f8d497;
+}
+
 .file-container > label {
   font-size: var(--code-font-size);
 }
