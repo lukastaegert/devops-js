@@ -1,0 +1,98 @@
+:root {
+  --code-font-size: 20px;
+}
+
+.reveal .CodeMirror pre {
+  box-shadow: none;
+}
+
+.CodeMirror {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+  font-size: var(--code-font-size);
+  height: unset;
+}
+
+.cm-s-rolled.CodeMirror {
+  background: #f8d497;
+}
+
+.file-container > label {
+  font-size: var(--code-font-size);
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+  gap: 20px;
+  text-align: left;
+}
+
+@keyframes selfdraw {
+  from {
+    stroke-dashoffset: 100px;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+section.future .section-selfdraw {
+  animation: none;
+}
+
+/* selfdraw */
+.fragment-selfdraw {
+  stroke-dasharray: 100px;
+  stroke-dashoffset: 100px;
+}
+
+.section-selfdraw,
+.current-fragment .fragment-selfdraw {
+  stroke-dasharray: 100px;
+  animation: selfdraw 0.5s linear both;
+}
+
+.arrow-line {
+  stroke: darkblue;
+  fill: transparent;
+  stroke-width: 4px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* appear */
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+section.future .section-appear {
+  animation: none;
+}
+
+.appear {
+  opacity: 0;
+  animation: none;
+}
+
+.section-appear,
+.current-fragment .appear,
+.appear.current-fragment {
+  animation: appear 1s ease both;
+}
+
+.first {
+  animation-delay: 0.4s !important;
+}
+
+.second {
+  animation-delay: 0.6s !important;
+}
+
+.third {
+  animation-delay: 0.8s !important;
+}

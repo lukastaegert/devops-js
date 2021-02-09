@@ -5,18 +5,92 @@
     <title>Own your build step—own your code</title>
     <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
     <link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css" />
-    <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/simple.css" />
     <link rel="stylesheet" href="node_modules/reveal.js/plugin/highlight/zenburn.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
-        <section>
-          <h2>Own your build step</h2>
-          <h2>—</h2>
-          <h2>own your code</h2>
+        <section
+          data-background-image="img/rollup-open.svg"
+          data-background-color="#FF5023"
+          data-background-transition="zoom"
+          data-background-size="contain"
+          data-background-position="right"
+        >
+          <h2>Own your</h2>
+          <h1 style="font-weight: bold">Build Step</h1>
+          <h2>—own your code</h2>
+          <div
+            style="
+              padding: 20px;
+              border-radius: 20px;
+              color: black;
+              background-color: white;
+              display: flex;
+              flex-direction: column;
+              width: min-content;
+              margin: auto;
+              margin-top: 70px;
+            "
+          >
+            <div style="white-space: nowrap">Lukas Taegert-Atkinson</div>
+            <img src="img/tng.svg" />
+          </div>
         </section>
+
+        <section data-center="true">
+          <blockquote style="margin-top: 200px">
+            Why don't we run JavaScript like a scripting language any more?
+          </blockquote>
+          <aside class="notes">Why are using complex build pipelines?</aside>
+        </section>
+
+        <section>
+          <h2 style="margin-bottom: 0">Exhibit A</h2>
+          <div>A web application (slow network)</div>
+          <div style="font-size: 20px">
+            <a href="https://github.com/TNG/next-generation-scrum-poker"
+              >github.com/TNG/next-generation-scrum-poker</a
+            >
+          </div>
+
+          <div style="display: flex; flex-direction: row; text-align: left; margin-top: 20px">
+            <div>
+              <code class="section-appear first">load 18.29s</code>
+              <div class="section-appear second">
+                <img
+                  src="img/waterfall-slow.png"
+                  style="width: 200px; margin: 0; border-radius: 10px"
+                />
+              </div>
+            </div>
+            <div style="align-self: center" class="fragment" data-fragment-index="1">
+              <div>bundle code</div>
+              <div>(no minification)</div>
+              <svg style="width: 300px; height: 60px">
+                <g>
+                  <path
+                    d="M5,10 h270 l-20,5 l10,-5 l10,0 l-20,-5 l10,5"
+                    pathLength="100"
+                    class="arrow-line fragment-selfdraw"
+                  />
+                </g>
+              </svg>
+            </div>
+            <div class="fragment" data-fragment-index="1">
+              <code class="appear first">load 7.48s</code>
+              <div class="appear second">
+                <img
+                  src="img/waterfall-fast.png"
+                  style="width: 300px; margin: 0; border-radius: 10px"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section>
           <h3>Mock & replace files</h3>
           <rollup-page code-sample="mockFiles"></rollup-page>

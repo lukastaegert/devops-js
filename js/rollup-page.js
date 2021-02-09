@@ -49,7 +49,6 @@ class RollupPage extends HTMLElement {
 
   _createColumnFromCode(codeSamples, isOutput) {
     const column = document.createElement('div');
-    column.setAttribute('class', 'column');
     const output = {
       column,
       files: {}
@@ -88,6 +87,7 @@ class RollupPage extends HTMLElement {
       {
         mode: 'javascript',
         readOnly: isOutput && 'nocursor',
+        scrollbarStyle: 'null',
         tabSize: 2,
         theme: `default${isOutput ? ' rolled' : ''}`,
         value
