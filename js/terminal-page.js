@@ -17,7 +17,7 @@ class TerminalPage extends HTMLElement {
 
   _createInput() {
     const input = document.createElement('input');
-    input.setAttribute('style', 'width: 90%; fontSize: 20px;');
+    input.setAttribute('style', 'width: 90%; font: 20px monospace; padding: 10px');
     input.setAttribute('value', this.getAttribute('input-value'));
     this.appendChild(input);
     input.addEventListener('keyup', ({ key }) => {

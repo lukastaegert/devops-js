@@ -1,0 +1,29 @@
+{
+  "name": "express-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "rollup": "npx rollup server.js --file built.js -p node-resolve -p commonjs -p json --format cjs",
+    "docker:rollup": "npm run docker -- -f Dockerfile-Rollup",
+    "docker": "run-s 'docker:build -- {@}' docker:show-size docker:run --",
+    "docker:build": "docker build . --tag apollo-demo",
+    "docker:show-size": "docker images -f reference=apollo-demo",
+    "docker:run": "docker run --rm  -p 4000:4000 apollo-demo",
+    "setup": "docker image prune -a"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.19.2",
+    "graphql": "^15.4.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^11.1.0",
+    "bufferutil": "^4.0.3",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.38.0",
+    "utf-8-validate": "^5.0.4"
+  }
+}

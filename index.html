@@ -57,7 +57,7 @@
           </div>
           <div style="display: flex; flex-direction: row; text-align: left; margin-top: 20px">
             <div>
-              <code class="section-appear first">load 18.29s</code>
+              <div class="section-appear first">loaded: 18.29s</div>
               <div class="section-appear second">
                 <img
                   src="img/waterfall-slow.png"
@@ -79,7 +79,7 @@
               </svg>
             </div>
             <div class="fragment" data-fragment-index="1">
-              <code class="appear first">load 7.48s</code>
+              <div class="appear first">loaded: 7.48s</div>
               <div class="appear second">
                 <img
                   src="img/waterfall-fast.png"
@@ -94,7 +94,7 @@
           <h2 style="margin-bottom: 0">Exhibit B</h2>
           <div>A node server</div>
           <terminal-page
-            input-value="docker images -f reference=w* --format '{{.Size}} {{.Repository}}'"
+            input-value="docker images -f reference=node* --format '{{.Size}} {{.Repository}}'"
           ></terminal-page>
         </section>
 

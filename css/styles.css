@@ -2,6 +2,14 @@
   --code-font-size: 20px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+.reveal pre {
+  font-size: var(--code-font-size);
+}
+
 .reveal .CodeMirror pre {
   box-shadow: none;
 }

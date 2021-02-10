@@ -1,7 +1,6 @@
 export class TerminalServerConnection {
   constructor(onMessage) {
     this._onMessage = onMessage;
-    this._createSocket();
     this._waitingCommands = [];
   }
 
@@ -10,6 +9,9 @@ export class TerminalServerConnection {
       this._client.send(command);
     } else {
       this._waitingCommands.push(command);
+      if (!this._client) {
+        this._createSocket();
+      }
     }
   }
 
@@ -25,6 +27,7 @@ export class TerminalServerConnection {
     for (const command of this._waitingCommands) {
       this._client.send(command);
     }
+    this._waitingCommands.length = 0;
   }
 
   _handleMessage(message) {

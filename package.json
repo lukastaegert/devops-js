@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "web-dev-server --watch --open"
+    "start": "run-p start:terminal start:slides",
+    "start:terminal": "node terminal-server/server.mjs",
+    "start:slides": "web-dev-server --open",
+    "dev": "run-p dev:terminal dev:slides",
+    "dev:terminal": "nodemon terminal-server/server.mjs",
+    "dev:slides": "web-dev-server --watch --open"
   },
   "keywords": [],
   "author": "Lukas Taegert-Atkinson",
@@ -12,6 +17,8 @@
   "dependencies": {
     "@web/dev-server": "^0.1.5",
     "codemirror": "^5.59.2",
+    "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
     "reveal.js": "^4.1.0",
     "ws": "^7.4.3"

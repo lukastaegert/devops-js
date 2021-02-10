@@ -1,0 +1,13 @@
+FROM node:14-alpine AS build-env
+COPY . /app
+WORKDIR /app
+RUN npx rollup server.js --file server.js --plugin node-resolve --plugin commonjs --plugin json --format cjs
+
+FROM node:14-alpine
+COPY --from=build-env server.js /app/
+COPY --from=build-env run.js /app/
+WORKDIR /app
+EXPOSE 4000
+CMD ["run.js", "server.js"]
+
+

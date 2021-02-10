@@ -1,14 +1,16 @@
 import { exec } from 'child_process';
 import WebSocket from 'ws';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
-const server = new WebSocket.Server({
-  port: 9000
-});
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const server = new WebSocket.Server({ port: 9000 }, () => console.log('Server running'));
 
 server.on('connection', async socket => {
   console.log('Client connected');
 
-  const shell = exec('bash');
+  const shell = exec('bash', { cwd: resolve(__dirname, '../apollo-demo') });
   shell.once('close', () => console.log('Shell closed\n'));
 
   socket.on('message', message => {
