@@ -34,5 +34,5 @@ server.listen().then(({ url }) => {
   setTimeout(() => {
     console.warn('Closing server as demo is done.');
     process.exit(0);
-  }, 10000);
+  }, 2000);
 });
