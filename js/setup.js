@@ -6,5 +6,6 @@ Reveal.initialize({
   plugins: [RevealHighlight, RevealNotes]
 }).then(() => {
   import('./rollup-page.js');
+  import('./static-codemirror.js');
   import('./terminal-page.js');
 });

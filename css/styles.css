@@ -1,9 +1,30 @@
 :root {
   --code-font-size: 20px;
+  --highlight-color: #e29100;
 }
 
 * {
   box-sizing: border-box;
+}
+
+.reveal ul {
+  margin-bottom: 20px;
+  margin-left: 0;
+  padding-left: 50px;
+}
+
+/* TODO Use colored bullet points and margin/padding instead of space */
+li {
+  list-style-type: '☞ ';
+  margin: 0;
+}
+
+.reveal a {
+  color: var(--highlight-color);
+}
+
+.reveal blockquote {
+  box-shadow: none;
 }
 
 .reveal pre {
@@ -22,6 +43,28 @@
 
 .cm-s-rolled.CodeMirror {
   background: #f8d497;
+}
+
+.sub-heading {
+  font-size: 20px;
+}
+
+.reveal .tight-heading {
+  margin: 20px 0 0 0;
+}
+
+.reveal .tight-heading.top {
+  margin: 0;
+}
+
+.small-code-block {
+  font-size: 20px;
+  display: block;
+}
+
+.left-align-box {
+  text-align: left;
+  display: inline-block;
 }
 
 .file-container > label {
@@ -63,13 +106,13 @@ section.future .section-selfdraw {
 }
 
 .section-selfdraw,
-.current-fragment .fragment-selfdraw {
+.fragment.visible .fragment-selfdraw {
   stroke-dasharray: 100px;
   animation: selfdraw 0.5s linear both;
 }
 
 .arrow-line {
-  stroke: darkblue;
+  stroke: var(--highlight-color);
   fill: transparent;
   stroke-width: 4px;
   stroke-linecap: round;
@@ -96,8 +139,8 @@ section.future .section-appear {
 }
 
 .section-appear,
-.current-fragment .appear,
-.appear.current-fragment {
+.fragment.visible .appear,
+.appear.fragment.visible {
   animation: appear 1s ease both;
 }
 

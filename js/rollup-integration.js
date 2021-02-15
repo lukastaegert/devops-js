@@ -25,11 +25,7 @@ export async function rollUpPage(configCodeMirror, inputFiles) {
 
 async function getRolledUpCode(options) {
   const bundle = await rollup(options);
-  const output = (await bundle.generate(options.output)).output;
-  for (const file of output) {
-    file.code = file.code.trim();
-  }
-  return output;
+  return (await bundle.generate(options.output)).output;
 }
 
 async function getConfigObject(config) {

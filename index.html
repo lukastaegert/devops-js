@@ -16,7 +16,6 @@
           data-background-image="img/rollup-open.svg"
           data-background-color="#FF5023"
           data-background-transition="zoom"
-          data-background-size="contain"
           data-background-position="right"
         >
           <h2>Own your</h2>
@@ -40,17 +39,15 @@
           </div>
         </section>
 
-        <section data-center="true">
-          <blockquote style="margin-top: 200px">
-            Why don't we run JavaScript like a scripting language any more?
-          </blockquote>
+        <section class="center">
+          <blockquote>Why don't we run JavaScript like a scripting language any more?</blockquote>
           <aside class="notes">Why are using complex build pipelines?</aside>
         </section>
 
         <section>
           <h2 style="margin-bottom: 0">Exhibit A</h2>
-          <div>A web application (slow network)</div>
-          <div style="font-size: 20px">
+          <div>web application (slow network)</div>
+          <div class="sub-heading">
             <a href="https://github.com/TNG/next-generation-scrum-poker"
               >github.com/TNG/next-generation-scrum-poker</a
             >
@@ -86,33 +83,133 @@
                   style="width: 300px; margin: 0; border-radius: 10px"
                 />
               </div>
+              <ul class="fragment" data-fragment-index="2">
+                <li>No loading waterfall</li>
+                <li>Less code via<br />tree-shaking</li>
+              </ul>
             </div>
           </div>
         </section>
 
         <section>
           <h2 style="margin-bottom: 0">Exhibit B</h2>
-          <div>A node server</div>
-          <terminal-page
-            input-value="docker images -f 'reference=node'"
-          ></terminal-page>
+          <div>node server</div>
+          <div class="sub-heading">
+            <a href="https://www.apollographql.com/docs/apollo-server/getting-started/"
+              >apollographql.com/docs/apollo-server/getting-started</a
+            >
+          </div>
+          <terminal-page input-value="docker images -f 'reference=node'"></terminal-page>
+        </section>
+
+        <section class="center">
+          <blockquote>Bundling eliminates the<br />load/parse waterfall.</blockquote>
+          <blockquote class="fragment">
+            Also for <strong>cloud functions</strong>,<br /><strong>command line tools</strong
+            >,<br />…
+          </blockquote>
         </section>
 
         <section>
-          <h3>Mock & replace files</h3>
-          <rollup-page code-sample="mockFiles"></rollup-page>
+          <h2>Choose your tool</h2>
+          <div class="left-align-box">
+            <h3 class="tight-heading top section-appear first">Webpack, Parcel, esbuild</h3>
+            <div class="section-appear second">Good options, but strong browser focus</div>
+            <h3 class="tight-heading fragment" data-fragment-index="1">
+              <img
+                src="img/rollup.svg"
+                style="height: 45px; margin: -20px 10px -10px 0; vertical-align: middle"
+              />Rollup
+            </h3>
+            <div class="fragment appear first" data-fragment-index="1">
+              No assumptions about target environment:
+            </div>
+            <ul>
+              <li class="fragment appear second" data-fragment-index="1">customize via plugins</li>
+              <li class="fragment appear second" data-fragment-index="1">six output formats</li>
+            </ul>
+
+            <div class="fragment" data-fragment-index="2">No-overhead ES module bundling:</div>
+            <ul>
+              <li class="fragment appear first" data-fragment-index="2">
+                ideal for libraries/intermediate files
+              </li>
+            </ul>
+            <div class="fragment" data-fragment-index="3">
+              Superior no-setup dead-code-elimination
+            </div>
+          </div>
         </section>
+
         <section>
-          <h3>Patch up files</h3>
+          <h2>Using rollup</h2>
+          <!-- TODO speech bubbles for input, output, plugins that also put a bracket under the code -->
+          <div class="left-align-box">
+            <h3 class="tight-heading top section-appear first">Command line</h3>
+            <code class="small-code-block section-appear second"
+              >npx rollup <span>main.js</span> -o bundle.js -f cjs -p node-resolve -p commonjs -p
+              json</code
+            >
+            <h3 class="fragment tight-heading" data-fragment-index="1">Configuration file</h3>
+            <div class="fragment appear first" data-fragment-index="1">
+              <static-codemirror>
+                <pre>
+import nodeResolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
+
+export default {
+  input: 'main.js',
+  plugins: [nodeResolve(), commonjs(), json()],
+  output: {
+    format: 'cjs'
+  }
+}
+                </pre>
+              </static-codemirror>
+            </div>
+          </div>
+        </section>
+
+        <section class="center">
+          <div>We own the build step, now let's</div>
+          <h1 class="section-appear first">Own the code</h1>
+          <div class="fragment">—write our own plugins!</div>
+        </section>
+
+        <section>
+          <h3>1. Inject information</h3>
+          <rollup-page code-sample="injectInformation"></rollup-page>
+        </section>
+
+        <section>
+          <h3>2. Patch up files</h3>
           <rollup-page code-sample="patchFiles"></rollup-page>
         </section>
+
         <section>
           <h2>Module life-cycle</h2>
           <div>Image showing how it works</div>
         </section>
+
         <section>
-          <h3>Add virtual modules</h3>
-          <rollup-page code-sample="virtualFiles"></rollup-page>
+          <h3>3. Mock files</h3>
+          <rollup-page code-sample="mockFiles"></rollup-page>
+        </section>
+
+        <section>
+          <h3>4. Environment dependent build information</h3>
+          <rollup-page code-sample="externalInformation"></rollup-page>
+        </section>
+
+        <section>
+          <h3>5. Add virtual modules</h3>
+          <rollup-page code-sample="virtualModules"></rollup-page>
+        </section>
+
+        <section>
+          <h3>6. Access build information</h3>
+          <rollup-page code-sample="buildInformation"></rollup-page>
         </section>
       </div>
     </div>

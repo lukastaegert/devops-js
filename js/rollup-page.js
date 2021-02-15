@@ -53,8 +53,13 @@ class RollupPage extends HTMLElement {
       column,
       files: {}
     };
-    for (const { fileName, code } of codeSamples) {
-      output.files[fileName] = this._addFileContainer(column, fileName, code, isOutput);
+    for (const { fileName, code, source } of codeSamples) {
+      output.files[fileName] = this._addFileContainer(
+        column,
+        fileName,
+        (typeof code === 'string' ? code : source).trim(),
+        isOutput
+      );
     }
     this._columnContainer.appendChild(column);
     return output;
