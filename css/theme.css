@@ -46,11 +46,15 @@ section.has-dark-background h6 {
   --link-color-hover: #0000f1;
   --selection-background-color: rgba(0, 0, 0, 0.99);
   --selection-color: #fff;
+  --code-font-size: 20px;
+  --highlight-hue: 30;
+  --highlight-color: hsl(var(--highlight-hue), 100%, 40%);
+  --pre-shadow-size: 0px 5px 15px;
+  --pre-shadow: var(--pre-shadow-size) rgba(0, 0, 0, 0.15);
 }
 
 .reveal-viewport {
-  background: #fff;
-  background-color: #fff;
+  background-image: radial-gradient(white, hsl(var(--highlight-hue), 69%, 90%));
 }
 
 .reveal {
@@ -100,24 +104,24 @@ section.has-dark-background h6 {
 
 .reveal h1 {
   font-size: 3.77em;
+  text-shadow: var(--heading1-text-shadow);
+  margin: 20px 0 0 0;
 }
 
 .reveal h2 {
   font-size: 2.11em;
+  text-shadow: var(--heading1-text-shadow);
+  margin: 20px 0 0 0;
 }
 
 .reveal h3 {
   font-size: 1.55em;
+  margin: 20px 0 0 0;
 }
 
 .reveal h4 {
   font-size: 1em;
-}
-
-.reveal h1 {
-  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa,
-    0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
-    0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0, 0, 0, 0.15);
+  margin: 20px 0 0 0;
 }
 
 /*********************************************
@@ -129,13 +133,13 @@ section.has-dark-background h6 {
 }
 
 /* Remove trailing margins after titles */
-.reveal h1:last-child,
-.reveal h2:last-child,
-.reveal h3:last-child,
-.reveal h4:last-child,
-.reveal h5:last-child,
-.reveal h6:last-child {
-  margin-bottom: 0;
+.reveal h1:first-child,
+.reveal h2:first-child,
+.reveal h3:first-child,
+.reveal h4:first-child,
+.reveal h5:first-child,
+.reveal h6:first-child {
+  margin-top: 0;
 }
 
 /* Ensure certain elements are never larger than the slide itself */
@@ -203,7 +207,6 @@ section.has-dark-background h6 {
   padding: 5px;
   font-style: italic;
   background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
 }
 
 .reveal blockquote p:first-child,
@@ -221,11 +224,11 @@ section.has-dark-background h6 {
   width: 90%;
   margin: 20px auto;
   text-align: left;
-  font-size: 0.55em;
+  font-size: var(--code-font-size);
   font-family: monospace;
   line-height: 1.2em;
   word-wrap: break-word;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--pre-shadow);
 }
 
 .reveal code {
@@ -296,6 +299,19 @@ section.has-dark-background h6 {
 
 .reveal img {
   margin: 20px 0;
+}
+
+.reveal input {
+  font: var(--code-font-size) monospace;
+  padding: 10px;
+  width: 90%;
+  box-shadow: var(--pre-shadow);
+  border: none;
+}
+
+.reveal input:focus {
+  outline: none;
+  box-shadow: var(--pre-shadow-size) var(--highlight-color);
 }
 
 /*********************************************

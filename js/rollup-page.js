@@ -11,6 +11,7 @@ class RollupPage extends HTMLElement {
     this._createColumnContainer();
     this._createConfigColumn(codeSample.config);
     this._input = this._createColumnFromCode(codeSample.input);
+    this.addEventListener('keypress', event => event.stopPropagation());
     this._registerResizeHandler();
   }
 

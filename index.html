@@ -13,27 +13,16 @@
     <div class="reveal">
       <div class="slides">
         <section
-          data-background-image="img/rollup-open.svg"
+          data-background-image="img/rollup-left.svg"
           data-background-color="#FF5023"
           data-background-transition="zoom"
-          data-background-position="right"
+          data-background-position="left"
+          class="center"
         >
-          <h2>Own your</h2>
-          <h1 style="font-weight: bold">Build Step</h1>
-          <h2>—own your code</h2>
-          <div
-            style="
-              padding: 20px;
-              border-radius: 20px;
-              color: black;
-              background-color: white;
-              display: flex;
-              flex-direction: column;
-              width: min-content;
-              margin: auto;
-              margin-top: 70px;
-            "
-          >
+          <h3 style="margin: 0">Own your</h3>
+          <h1 style="margin: 0; font-weight: bold">Build Step</h1>
+          <h3 style="margin: 0">—own your code</h3>
+          <div class="name-box">
             <div style="white-space: nowrap">Lukas Taegert-Atkinson</div>
             <img src="img/tng.svg" />
           </div>
@@ -113,9 +102,9 @@
         <section>
           <h2>Choose your tool</h2>
           <div class="left-align-box">
-            <h3 class="tight-heading top section-appear first">Webpack, Parcel, esbuild</h3>
+            <h3 class="section-appear first">Webpack, Parcel, esbuild</h3>
             <div class="section-appear second">Good options, but strong browser focus</div>
-            <h3 class="tight-heading fragment" data-fragment-index="1">
+            <h3 class="fragment" data-fragment-index="1">
               <img
                 src="img/rollup.svg"
                 style="height: 45px; margin: -20px 10px -10px 0; vertical-align: middle"
@@ -145,12 +134,12 @@
           <h2>Using rollup</h2>
           <!-- TODO speech bubbles for input, output, plugins that also put a bracket under the code -->
           <div class="left-align-box">
-            <h3 class="tight-heading top section-appear first">Command line</h3>
+            <h3 class="section-appear first">Command line</h3>
             <code class="small-code-block section-appear second"
               >npx rollup <span>main.js</span> -o bundle.js -f cjs -p node-resolve -p commonjs -p
               json</code
             >
-            <h3 class="fragment tight-heading" data-fragment-index="1">Configuration file</h3>
+            <h3 class="fragment" data-fragment-index="1">Configuration file</h3>
             <div class="fragment appear first" data-fragment-index="1">
               <static-codemirror>
                 <pre>
@@ -173,18 +162,22 @@ export default {
 
         <section class="center">
           <div>We own the build step, now let's</div>
-          <h1 class="section-appear first">Own the code</h1>
+          <h1 class="section-appear first" style="margin: 0">Own the code</h1>
           <div class="fragment">—write our own plugins!</div>
         </section>
 
         <section>
-          <h3>1. Inject information</h3>
-          <rollup-page code-sample="injectInformation"></rollup-page>
+          <div class="left-align-box">
+            <h3>1. Inject information</h3>
+            <rollup-page code-sample="injectInformation"></rollup-page>
+          </div>
         </section>
 
         <section>
-          <h3>2. Patch up files</h3>
-          <rollup-page code-sample="patchFiles"></rollup-page>
+          <div class="left-align-box">
+            <h3>2. Patch up files</h3>
+            <rollup-page code-sample="patchFiles"></rollup-page>
+          </div>
         </section>
 
         <section>
@@ -193,23 +186,82 @@ export default {
         </section>
 
         <section>
-          <h3>3. Mock files</h3>
-          <rollup-page code-sample="mockFiles"></rollup-page>
+          <div class="left-align-box">
+            <h3>3. Replace files</h3>
+            <rollup-page code-sample="mockFiles"></rollup-page>
+          </div>
         </section>
 
         <section>
-          <h3>4. Environment dependent build information</h3>
-          <rollup-page code-sample="externalInformation"></rollup-page>
+          <div class="left-align-box">
+            <h3>4. Add virtual modules</h3>
+            <rollup-page code-sample="virtualModules"></rollup-page>
+          </div>
         </section>
 
         <section>
-          <h3>5. Add virtual modules</h3>
-          <rollup-page code-sample="virtualModules"></rollup-page>
+          <div class="left-align-box">
+            <h3>5. Access output information</h3>
+            <rollup-page code-sample="buildInformation"></rollup-page>
+          </div>
         </section>
 
-        <section>
-          <h3>6. Access build information</h3>
-          <rollup-page code-sample="buildInformation"></rollup-page>
+        <section class="center">
+          <h1>There is much more...</h1>
+          <div class="section-appear first">Check out the documentation:</div>
+          <a class="section-appear first" href="https://rollupjs.org/guide/en/#plugin-development"
+            >rollupjs.org/guide/en/#plugin-development</a
+          >
+        </section>
+        <section data-transition="slide-in zoom-out">
+          <div class="left-align-box">
+            <h2>Better Developer Experience?</h2>
+            <h3 class="fragment" data-fragment-index="1">Frontend dev tools powered by Rollup:</h3>
+            <ul class="fragment appear first" data-fragment-index="1">
+              <li>
+                <img
+                  src="img/stencil.png"
+                  style="height: 40px; vertical-align: middle; margin: -20px 6px -10px 0"
+                  alt="Stencil logo"
+                /><a href="https://stenciljs.com/">Stencil</a>
+              </li>
+              <li>
+                <img
+                  src="img/vite.svg"
+                  style="height: 40px; vertical-align: middle; margin: -20px 14px -10px 0"
+                  alt="Vite logo"
+                /><a href="https://vitejs.dev/">Vite</a>
+              </li>
+              <li><a href="https://github.com/preactjs/wmr">WMR</a></li>
+            </ul>
+            <h3 class="fragment" data-fragment-index="2">Library bundlers powered by Rollup:</h3>
+            <ul class="fragment appear first" data-fragment-index="2">
+              <li><a href="https://github.com/developit/microbundle">microbundle</a></li>
+              <li>
+                <img
+                  src="img/tsdx.svg"
+                  style="height: 40px; vertical-align: middle; margin: -20px 10px -10px 0"
+                  alt="TSDX logo"
+                /><a href="https://tsdx.io/">TSDX</a>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section
+          class="center"
+          data-background-image="img/rollup-left.svg"
+          data-background-color="#FF5023"
+          data-background-transition="zoom"
+          data-background-position="left"
+          data-transition="zoom"
+        >
+          <h1 style="margin: 0">Thank you</h1>
+          <h2 style="margin: 0">& happy bundling!</h2>
+          <div class="name-box">
+            <div style="white-space: nowrap">Lukas Taegert-Atkinson</div>
+            <img src="img/tng.svg" />
+          </div>
         </section>
       </div>
     </div>

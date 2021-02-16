@@ -12,21 +12,30 @@ class TerminalPage extends HTMLElement {
     const wrapper = document.createElement('pre');
     this.appendChild(wrapper);
     this._output = document.createElement('code');
+    this._output.setAttribute('class', 'terminal-page-code');
     wrapper.appendChild(this._output);
   }
 
   _createInput() {
     const input = document.createElement('input');
-    input.setAttribute('style', 'width: 90%; font: 20px monospace; padding: 10px');
     input.setAttribute('value', this.getAttribute('input-value'));
     this.appendChild(input);
     input.addEventListener('keyup', ({ key }) => {
-      console.log(key);
       if (key === 'Enter') {
         const value = `${input.value}\n`;
         this._connection.sendCommand(value);
         this._appendOutput(this._output.children.length ? `\n${value}` : value, 'terminal-input');
         input.value = '';
+      }
+    });
+    let parent = this.parentElement;
+    while (parent && parent.tagName !== 'SECTION') {
+      parent = parent.parentElement;
+    }
+    Reveal.on('slidechanged', ({ currentSlide }) => {
+      if (parent === currentSlide) {
+        input.focus({ preventScroll: true });
+        input.selectionStart = input.selectionEnd = input.value.length;
       }
     });
   }

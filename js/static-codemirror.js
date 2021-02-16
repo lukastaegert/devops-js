@@ -5,6 +5,7 @@ class StaticCodemirror extends HTMLElement {
     while (this.firstChild) {
       this.firstChild.remove();
     }
+    console.log(JSON.stringify(value));
     this._codeMirror = CodeMirror(
       element => {
         this.appendChild(element);
