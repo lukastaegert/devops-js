@@ -22,7 +22,7 @@
           <h3 style="margin: 0">Own your</h3>
           <h1 style="margin: 0; font-weight: bold">Build Step</h1>
           <h3 style="margin: 0">—own your code</h3>
-          <div class="name-box">
+          <div class="name-box white-box">
             <div style="white-space: nowrap">Lukas Taegert-Atkinson</div>
             <img src="img/tng.svg" />
           </div>
@@ -161,8 +161,8 @@ export default {
 
         <section class="center">
           <div>We own the build step, now let's</div>
-          <h1 class="section-appear first" style="margin: 0">Own the code</h1>
-          <div class="fragment">—write our own plugins!</div>
+          <h1 style="margin: 0">Own the code</h1>
+          <div class="section-appear first">—write our own plugins!</div>
         </section>
 
         <section>
@@ -180,8 +180,191 @@ export default {
         </section>
 
         <section>
-          <h2>Module life-cycle</h2>
-          <div>Image showing how it works</div>
+          <div class="left-align-box">
+            <!--  TODO Lukas extract classes and sub-page  -->
+            <h2>Module life-cycle</h2>
+            <div style="font-size: var(--code-font-size)">
+              <div class="white-box section-appear first" style="width: max-content">
+                <h3>Module</h3>
+                <div class="key-value-table">
+                  <div>id:</div>
+                  <code>"/main.js"</code>
+                  <div>code:</div>
+                  <code>"import './foo';"</code>
+                </div>
+              </div>
+              <svg style="width: 100px; height: 200px; position: absolute">
+                <path
+                  d="M10,20 v70 l-5,-20 l5,10 l0,10 l5,-20 l-5,10"
+                  pathLength="100"
+                  class="arrow-line fragment fragment-selfdraw"
+                  data-fragment-index="1"
+                />
+              </svg>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: max-content max-content max-content max-content;
+                  grid-template-rows: 15px;
+                  grid-column-gap: 20px;
+                  grid-row-gap: 40px;
+                  margin-top: 40px;
+                "
+              >
+                <div
+                  class="white-box fragment appear second"
+                  data-fragment-index="1"
+                  style="grid-column: 2/3; grid-row: 1/5"
+                >
+                  <h3 style="font-size: 30px">Plugin A</h3>
+                </div>
+                <div
+                  class="white-box fragment appear third"
+                  data-fragment-index="1"
+                  style="grid-column: 3/4; grid-row: 1/5"
+                >
+                  <h3 style="font-size: 30px">Plugin B</h3>
+                </div>
+                <div
+                  class="white-box fragment appear fourth"
+                  data-fragment-index="1"
+                  style="grid-column: 4/5; grid-row: 1/5"
+                >
+                  <h3 style="font-size: 30px">Core</h3>
+                </div>
+                <div
+                  class="fragment appear first"
+                  data-fragment-index="1"
+                  style="grid-column: 1/2; grid-row: 2/3; position: relative"
+                >
+                  <h3 style="font-size: 30px">
+                    resolveId<svg style="width: 400px; height: 60px; position: absolute">
+                      <path
+                        d="M10,15 h340 l-20,5 l10,-5 l10,0 l-20,-5 l10,5"
+                        pathLength="100"
+                        class="arrow-line fragment fragment-selfdraw"
+                        data-fragment-index="2"
+                        stroke="blue"
+                      />
+                    </svg>
+                  </h3>
+                  <div class="key-value-table">
+                    <div>source:</div>
+                    <code>"./foo"</code>
+                    <div>importer:</div>
+                    <code>"/main.js"</code>
+                  </div>
+                  <svg style="width: 100px; height: 200px; position: absolute">
+                    <path
+                      d="M10,5 v30 l-5,-20 l5,10 l0,10 l5,-20 l-5,10"
+                      pathLength="100"
+                      class="arrow-line fragment fragment-selfdraw"
+                      data-fragment-index="3"
+                    />
+                  </svg>
+                </div>
+                <code
+                  class="fragment appear first"
+                  data-fragment-index="2"
+                  style="grid-column: 3/4; grid-row: 2/3; margin: 0 20px"
+                  >/foo.js</code
+                >
+                <div
+                  class="fragment appear first"
+                  data-fragment-index="3"
+                  style="grid-column: 1/2; grid-row: 3/4; position: relative"
+                >
+                  <h3 style="font-size: 30px">
+                    load<svg style="width: 650px; height: 60px; position: absolute">
+                      <path
+                        d="M10,15 h590 l-20,5 l10,-5 l10,0 l-20,-5 l10,5"
+                        pathLength="100"
+                        class="arrow-line fragment fragment-selfdraw"
+                        data-fragment-index="4"
+                      />
+                    </svg>
+                  </h3>
+                  <div class="key-value-table">
+                    <div>id:</div>
+                    <code>"/foo.js"</code>
+                  </div>
+                  <svg style="width: 100px; height: 200px; position: absolute">
+                    <path
+                      d="M10,5 v30 l-5,-20 l5,10 l0,10 l5,-20 l-5,10"
+                      pathLength="100"
+                      class="arrow-line fragment fragment-selfdraw"
+                      data-fragment-index="5"
+                    />
+                  </svg>
+                </div>
+                <code
+                  class="fragment appear first"
+                  data-fragment-index="4"
+                  style="grid-column: 4/5; grid-row: 3/4; margin: 0 20px"
+                  >log('foo');</code
+                >
+                <div
+                  class="fragment appear first"
+                  data-fragment-index="5"
+                  style="grid-column: 1/2; grid-row: 4/5; position: relative"
+                >
+                  <h3 style="font-size: 30px">
+                    transform<svg style="width: 400px; height: 60px; position: absolute">
+                      <path
+                        d="M10,15 h135 l-20,5 l10,-5 l10,0 l-20,-5 l10,5"
+                        pathLength="100"
+                        class="arrow-line fragment fragment-selfdraw"
+                        data-fragment-index="6"
+                      />
+                    </svg>
+                  </h3>
+                  <div class="key-value-table">
+                    <div>code:</div>
+                    <code>"log('foo');"</code>
+                    <div>id:</div>
+                    <code>"/foo.js"</code>
+                  </div>
+                </div>
+                <code
+                  class="fragment appear first"
+                  data-fragment-index="6"
+                  style="grid-column: 2/3; grid-row: 4/5; margin: 0 20px; position: relative"
+                  >log('bar');<svg style="width: 400px; height: 60px; position: absolute">
+                    <path
+                      d="M10,15 h40 l-20,5 l10,-5 l10,0 l-20,-5 l10,5"
+                      pathLength="100"
+                      class="arrow-line fragment fragment-selfdraw second"
+                      data-fragment-index="6"
+                    /></svg
+                ></code>
+                <div style="grid-column: 3/4; grid-row: 4/5; margin: 0 20px; position: relative">
+                  <code class="fragment appear third" data-fragment-index="6" style="display: block"
+                    >import log<br />
+                    &nbsp;from 'log';<br />
+                    log('bar');</code
+                  >
+                  <svg
+                    style="width: 700px; height: 600px; position: absolute; margin: -300px -500px"
+                  >
+                    <path
+                      d="M510,305 v30 h-495 v-322 h30 l-20,5 l10,-5 l10,0 l-20,-5 l10,5"
+                      pathLength="100"
+                      class="arrow-line fragment fragment-selfdraw"
+                      data-fragment-index="7"
+                    />
+                  </svg>
+                  <div
+                    class="white-box fragment appear first"
+                    data-fragment-index="7"
+                    style="position: absolute; left: -450px; bottom: -50px"
+                  >
+                    source: <code>"log"</code>, <span style="margin-left: 10px">importer:</span>
+                    <code>"/foo.js"</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
@@ -254,10 +437,12 @@ export default {
           data-background-transition="fade"
           data-background-position="left"
           data-transition="fade"
+          data-transition-speed="slow"
+          data-btransition-speed="slow"
         >
           <h1 style="margin: 0">Thank you</h1>
           <h2 style="margin: 0">& happy bundling!</h2>
-          <div class="name-box">
+          <div class="name-box white-box">
             <div style="white-space: nowrap">Lukas Taegert-Atkinson</div>
             <img src="img/tng.svg" />
           </div>

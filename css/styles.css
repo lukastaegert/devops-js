@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-.reveal a {
-  color: var(--highlight-color);
-}
-
 .reveal .CodeMirror pre {
   box-shadow: none;
 }
@@ -29,15 +25,24 @@
 }
 
 .name-box {
-  padding: 20px;
-  border-radius: 20px;
-  color: black;
-  background-color: white;
   display: flex;
   flex-direction: column;
   width: min-content;
   margin: 70px auto 0;
+}
+
+.white-box {
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: black;
+  background-color: white;
   box-shadow: var(--heading1-text-shadow);
+}
+
+.key-value-table {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-column-gap: 10px;
 }
 
 .small-code-block {
@@ -59,6 +64,7 @@
   grid-template-columns: calc(50% - 10px) calc(50% - 10px);
   gap: 20px;
   text-align: left;
+  font-size: var(--code-font-size);
 }
 
 .stderr {
@@ -72,7 +78,7 @@
 /* selfdraw */
 @keyframes selfdraw {
   from {
-    stroke-dashoffset: 100px;
+    stroke-dashoffset: 104px;
   }
   to {
     stroke-dashoffset: 0;
@@ -84,13 +90,13 @@ section.future .section-selfdraw {
 }
 
 .fragment-selfdraw {
-  stroke-dasharray: 100px;
-  stroke-dashoffset: 100px;
+  stroke-dasharray: 103px;
+  stroke-dashoffset: 104px;
 }
 
 .section-selfdraw,
-.fragment.visible .fragment-selfdraw {
-  stroke-dasharray: 100px;
+.fragment.visible.fragment-selfdraw {
+  stroke-dasharray: 103px;
   animation: selfdraw 0.5s linear both;
 }
 
@@ -137,4 +143,8 @@ section.future .section-appear {
 
 .third {
   animation-delay: 0.8s !important;
+}
+
+.fourth {
+  animation-delay: 1s !important;
 }

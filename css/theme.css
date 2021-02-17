@@ -335,7 +335,7 @@ section.has-dark-background h6 {
  * LINKS
  *********************************************/
 .reveal a {
-  color: #00008b;
+  color: var(--highlight-color);
   text-decoration: none;
   transition: color 0.15s ease;
 }
