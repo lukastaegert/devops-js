@@ -2,18 +2,6 @@
   box-sizing: border-box;
 }
 
-.reveal ul {
-  margin-bottom: 20px;
-  margin-left: 0;
-  padding-left: 50px;
-}
-
-/* TODO Use colored bullet points and margin/padding instead of space */
-li {
-  list-style-type: '☞ ';
-  margin: 0;
-}
-
 .reveal a {
   color: var(--highlight-color);
 }
@@ -50,14 +38,6 @@ li {
   width: min-content;
   margin: 70px auto 0;
   box-shadow: var(--heading1-text-shadow);
-}
-
-.reveal .tight-heading {
-  margin: 20px 0 0 0;
-}
-
-.reveal .tight-heading.top {
-  margin: 0;
 }
 
 .small-code-block {

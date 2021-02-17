@@ -34,61 +34,64 @@
         </section>
 
         <section>
-          <h2 style="margin-bottom: 0">Exhibit A</h2>
-          <div>web application (slow network)</div>
-          <div class="sub-heading">
-            <a href="https://github.com/TNG/next-generation-scrum-poker"
-              >github.com/TNG/next-generation-scrum-poker</a
-            >
-          </div>
-          <div style="display: flex; flex-direction: row; text-align: left; margin-top: 20px">
-            <div>
-              <div class="section-appear first">loaded: 18.29s</div>
-              <div class="section-appear second">
-                <img
-                  src="img/waterfall-slow.png"
-                  style="width: 200px; margin: 0; border-radius: 10px"
-                />
-              </div>
+          <div class="left-align-box">
+            <h2>Exhibit A</h2>
+            <div>web application (slow network)</div>
+            <div class="sub-heading">
+              <a href="https://github.com/TNG/next-generation-scrum-poker"
+                >github.com/TNG/next-generation-scrum-poker</a
+              >
             </div>
-            <div style="align-self: center" class="fragment" data-fragment-index="1">
-              <div>bundle code</div>
-              <div>(no minification)</div>
-              <svg style="width: 300px; height: 60px">
-                <g>
-                  <path
-                    d="M5,10 h270 l-20,5 l10,-5 l10,0 l-20,-5 l10,5"
-                    pathLength="100"
-                    class="arrow-line fragment-selfdraw"
+            <div style="display: flex; flex-direction: row; text-align: left; margin-top: 20px">
+              <div>
+                <div class="section-appear first">loaded: 18.29s</div>
+                <div class="section-appear second">
+                  <img
+                    src="img/waterfall-slow.png"
+                    style="width: 200px; margin: 0; border-radius: 10px"
                   />
-                </g>
-              </svg>
-            </div>
-            <div class="fragment" data-fragment-index="1">
-              <div class="appear first">loaded: 7.48s</div>
-              <div class="appear second">
-                <img
-                  src="img/waterfall-fast.png"
-                  style="width: 300px; margin: 0; border-radius: 10px"
-                />
+                </div>
               </div>
-              <ul class="fragment" data-fragment-index="2">
-                <li>No loading waterfall</li>
-                <li>Less code via<br />tree-shaking</li>
-              </ul>
+              <div style="align-self: center" class="fragment" data-fragment-index="1">
+                <div>bundle code</div>
+                <div>(no minification)</div>
+                <svg style="width: 300px; height: 60px">
+                  <g>
+                    <path
+                      d="M5,10 h270 l-20,5 l10,-5 l10,0 l-20,-5 l10,5"
+                      pathLength="100"
+                      class="arrow-line fragment-selfdraw"
+                    />
+                  </g>
+                </svg>
+              </div>
+              <div class="fragment" data-fragment-index="1">
+                <div class="appear first">loaded: 7.48s</div>
+                <div class="appear second">
+                  <img
+                    src="img/waterfall-fast.png"
+                    style="width: 300px; margin: 0; border-radius: 10px"
+                  />
+                </div>
+                <ul class="fragment" data-fragment-index="2">
+                  <li>No loading<br />waterfall</li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
 
         <section>
-          <h2 style="margin-bottom: 0">Exhibit B</h2>
-          <div>node server</div>
-          <div class="sub-heading">
-            <a href="https://www.apollographql.com/docs/apollo-server/getting-started/"
-              >apollographql.com/docs/apollo-server/getting-started</a
-            >
+          <div class="left-align-box" style="width: 90%">
+            <h2>Exhibit B</h2>
+            <div>node server</div>
+            <div class="sub-heading">
+              <a href="https://www.apollographql.com/docs/apollo-server/getting-started/"
+                >apollographql.com/docs/apollo-server/getting-started</a
+              >
+            </div>
+            <terminal-page input-value="docker images -f 'reference=node'"></terminal-page>
           </div>
-          <terminal-page input-value="docker images -f 'reference=node'"></terminal-page>
         </section>
 
         <section class="center">
@@ -100,40 +103,36 @@
         </section>
 
         <section>
-          <h2>Choose your tool</h2>
           <div class="left-align-box">
-            <h3 class="section-appear first">Webpack, Parcel, esbuild</h3>
-            <div class="section-appear second">Good options, but strong browser focus</div>
-            <h3 class="fragment" data-fragment-index="1">
+            <h2>
               <img
                 src="img/rollup.svg"
-                style="height: 45px; margin: -20px 10px -10px 0; vertical-align: middle"
+                style="height: 64px; margin: -24px 30px -10px 0; vertical-align: middle"
               />Rollup
-            </h3>
-            <div class="fragment appear first" data-fragment-index="1">
-              No assumptions about target environment:
+            </h2>
+            <div class="section-appear first">
+              No assumptions about target environment<br />
+              (browser, Node, …)
             </div>
-            <ul>
-              <li class="fragment appear second" data-fragment-index="1">customize via plugins</li>
-              <li class="fragment appear second" data-fragment-index="1">six output formats</li>
+            <ul class="fragment" data-fragment-index="1">
+              <li>customize via plugins</li>
+              <li>six output formats (ES, CommonJS, …)</li>
             </ul>
 
-            <div class="fragment" data-fragment-index="2">No-overhead ES module bundling:</div>
-            <ul>
-              <li class="fragment appear first" data-fragment-index="2">
-                ideal for libraries/intermediate files
-              </li>
+            <div class="fragment" data-fragment-index="2">No-overhead ES module bundling</div>
+            <ul class="fragment appear first" data-fragment-index="2">
+              <li>ideal for libraries/intermediate files</li>
             </ul>
             <div class="fragment" data-fragment-index="3">
-              Superior no-setup dead-code-elimination
+              Best-of-class no-setup dead-code-elimination
             </div>
           </div>
         </section>
 
         <section>
-          <h2>Using rollup</h2>
-          <!-- TODO speech bubbles for input, output, plugins that also put a bracket under the code -->
           <div class="left-align-box">
+            <h2>Using rollup</h2>
+            <!-- TODO speech bubbles for input, output, plugins that also put a bracket under the code -->
             <h3 class="section-appear first">Command line</h3>
             <code class="small-code-block section-appear second"
               >npx rollup <span>main.js</span> -o bundle.js -f cjs -p node-resolve -p commonjs -p
@@ -215,8 +214,8 @@ export default {
         </section>
         <section data-transition="slide-in zoom-out">
           <div class="left-align-box">
-            <h2>Better Developer Experience?</h2>
-            <h3 class="fragment" data-fragment-index="1">Frontend dev tools powered by Rollup:</h3>
+            <h2>High level tooling</h2>
+            <h3 class="fragment" data-fragment-index="1">Frontend dev tools powered by Rollup</h3>
             <ul class="fragment appear first" data-fragment-index="1">
               <li>
                 <img
@@ -234,7 +233,7 @@ export default {
               </li>
               <li><a href="https://github.com/preactjs/wmr">WMR</a></li>
             </ul>
-            <h3 class="fragment" data-fragment-index="2">Library bundlers powered by Rollup:</h3>
+            <h3 class="fragment" data-fragment-index="2">Library bundlers powered by Rollup</h3>
             <ul class="fragment appear first" data-fragment-index="2">
               <li><a href="https://github.com/developit/microbundle">microbundle</a></li>
               <li>
@@ -252,9 +251,9 @@ export default {
           class="center"
           data-background-image="img/rollup-left.svg"
           data-background-color="#FF5023"
-          data-background-transition="zoom"
+          data-background-transition="fade"
           data-background-position="left"
-          data-transition="zoom"
+          data-transition="fade"
         >
           <h1 style="margin: 0">Thank you</h1>
           <h2 style="margin: 0">& happy bundling!</h2>
