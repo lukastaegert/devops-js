@@ -16,6 +16,16 @@
   height: unset;
 }
 
+.file-container.output .CodeMirror.cm-s-error {
+  box-shadow: none;
+  background: transparent;
+  word-break: break-word;
+}
+
+.file-container.output .CodeMirror.cm-s-error .CodeMirror-line {
+  padding: 0;
+}
+
 .sub-heading {
   font-size: 20px;
 }
@@ -62,7 +72,7 @@
 }
 
 .file-container:first-child > label {
-  margin-top: 0;
+  padding-top: 0;
 }
 
 .file-container.output .CodeMirror {

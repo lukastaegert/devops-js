@@ -3,10 +3,6 @@ import { rollUpPage } from './rollup-integration.js';
 
 const configName = 'rollup.config.js';
 
-function wait() {
-  return new Promise(resolve => setTimeout(resolve));
-}
-
 class RollupPage extends HTMLElement {
   constructor() {
     super();
@@ -35,16 +31,13 @@ class RollupPage extends HTMLElement {
       [{ fileName: configName, code: config }],
       configColumn
     )[configName];
+    this._config.on('focus', () => this._handleCodeChanges());
   }
 
-  _removeFileContainer(codeMirror, delay = 0) {
+  async _removeFileContainer(codeMirror, delay = 0) {
     this._codeMirrors.delete(codeMirror);
     const fileContainer = codeMirror.display.wrapper.parentElement;
-    fileContainer.classList.remove('zoom-in');
-    fileContainer.style.animationDelay = `0.${delay}s`;
-    fileContainer.clientHeight;
-    fileContainer.classList.add('zoom-out');
-    fileContainer.addEventListener('animationend', () => fileContainer.remove());
+    await zoomOut(fileContainer, delay);
   }
 
   _createFilesFromCode(codeSamples, container) {
@@ -69,51 +62,58 @@ class RollupPage extends HTMLElement {
 
   async _updateOutput(codeSamples) {
     let delay = 0;
+    const outputsToBeCreated = new Map();
     const outputsToBeUpdated = new Set(Object.keys(this._output));
     for (const { fileName, code, source } of codeSamples) {
       const content = (typeof code === 'string' ? code : source).trim();
       if (outputsToBeUpdated.has(fileName)) {
         outputsToBeUpdated.delete(fileName);
-        this._output[fileName].setValue(content);
+        if (content !== this._output[fileName].getValue()) {
+          this._output[fileName].setValue(content);
+        }
         await wait();
       } else {
-        this._output[fileName] = this._addOutputContainer(
-          this._inputOutputColumn,
-          fileName,
-          content,
-          delay++
-        );
-        await wait();
+        outputsToBeCreated.set(fileName, content);
       }
     }
-    for (const fileName of outputsToBeUpdated) {
-      this._removeFileContainer(this._output[fileName], delay++);
-      delete this._output[fileName];
+    await Promise.all(
+      [...outputsToBeUpdated].map(async fileName => {
+        await this._removeFileContainer(this._output[fileName], delay++);
+        delete this._output[fileName];
+      })
+    );
+    for (const [fileName, content] of outputsToBeCreated) {
+      this._output[fileName] = this._addOutputContainer(
+        this._inputOutputColumn,
+        fileName,
+        content,
+        delay++,
+        ['Error', 'Warnings'].includes(fileName) ? { theme: 'error', mode: null } : {}
+      );
       await wait();
     }
   }
 
-  _addOutputContainer(parent, fileName, code, outputDelay) {
+  _addOutputContainer(parent, fileName, code, delay, options = {}) {
     const fileContainer = document.createElement('div');
     fileContainer.setAttribute('class', 'file-container output');
     fileContainer.innerHTML = `<label>${fileName}</label>`;
     parent.appendChild(fileContainer);
-    fileContainer.classList.add('zoom-in');
-    fileContainer.style.animationDelay = `0.${outputDelay++}s`;
-    return this._createCodeMirror(fileContainer, code, true);
+    zoomIn(fileContainer, delay);
+    return this._createCodeMirror(fileContainer, code, { readOnly: 'nocursor', ...options });
   }
 
-  _createCodeMirror(parent, value, isOutput) {
+  _createCodeMirror(parent, value, options = {}) {
     const codeMirror = CodeMirror(
       element => {
         parent.appendChild(element);
       },
       {
         mode: 'javascript',
-        readOnly: isOutput && 'nocursor',
         scrollbarStyle: 'null',
         tabSize: 2,
-        value
+        value,
+        ...options
       }
     );
     this._codeMirrors.add(codeMirror);
@@ -127,14 +127,14 @@ class RollupPage extends HTMLElement {
     } else {
       this._updating = true;
       do {
-        this._needsUpdate = false;
         await wait();
+        this._needsUpdate = false;
         try {
           const output = await rollUpPage(this._config, this._input);
           await this._updateOutput(output);
           this._resizeCodeMirrors();
-        } catch {
-          this._updateOutput([]);
+        } catch (error) {
+          await this._updateOutput([{ fileName: 'Error', code: error.message }]);
         }
       } while (this._needsUpdate);
       this._updating = false;
@@ -177,3 +177,25 @@ class RollupPage extends HTMLElement {
 }
 
 customElements.define('rollup-page', RollupPage);
+
+function wait() {
+  return new Promise(resolve => setTimeout(resolve));
+}
+
+function zoomIn(element, delay = 0) {
+  element.classList.add('zoom-in');
+  element.style.animationDelay = `0.${delay++}s`;
+}
+
+function zoomOut(element, delay = 0) {
+  return new Promise(resolve => {
+    element.classList.remove('zoom-in');
+    element.style.animationDelay = `0.${delay}s`;
+    element.clientHeight;
+    element.classList.add('zoom-out');
+    element.addEventListener('animationend', () => {
+      element.remove();
+      resolve();
+    });
+  });
+}

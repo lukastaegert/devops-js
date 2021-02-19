@@ -3,7 +3,9 @@ import { dirname, isAbsolute, resolve } from './path.js';
 
 export async function rollUpPage(configCodeMirror, inputFiles) {
   const config = await getConfigObject(configCodeMirror);
+  const warnings = [];
   config.plugins = config.plugins || [];
+  config.onwarn = warning => warnings.push(warning);
   config.plugins.push({
     name: 'presentation-plugin',
     resolveId(source, importer) {
@@ -20,7 +22,14 @@ export async function rollUpPage(configCodeMirror, inputFiles) {
       }
     }
   });
-  return await getRolledUpCode(config);
+  const output = await getRolledUpCode(config);
+  if (warnings.length) {
+    output.unshift({
+      fileName: 'Warnings',
+      code: warnings.map(({ message }) => message).join('\n')
+    });
+  }
+  return output;
 }
 
 async function getRolledUpCode(options) {
