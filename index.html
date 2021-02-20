@@ -56,13 +56,12 @@
                 <div>bundle code</div>
                 <div>(no minification)</div>
                 <svg style="width: 300px; height: 60px">
-                  <g>
-                    <path
-                      d="M5,10 h270 l-20,5 l10,-5 l10,0 l-20,-5 l10,5"
-                      pathLength="100"
-                      class="arrow-line fragment-selfdraw"
-                    />
-                  </g>
+                  <path
+                    d="M5,10 h270 l-20,5 l10,-5 l10,0 l-20,-5 l10,5"
+                    pathLength="100"
+                    class="arrow-line fragment fragment-selfdraw"
+                    data-fragment-index="1"
+                  />
                 </svg>
               </div>
               <div class="fragment" data-fragment-index="1">
@@ -74,7 +73,7 @@
                   />
                 </div>
                 <ul class="fragment" data-fragment-index="2">
-                  <li>No loading<br />waterfall</li>
+                  <li>No load/parse<br />waterfall</li>
                 </ul>
               </div>
             </div>
@@ -132,14 +131,38 @@
         <section>
           <div class="left-align-box">
             <h2>Using rollup</h2>
-            <!-- TODO speech bubbles for input, output, plugins that also put a bracket under the code -->
             <h3 class="section-appear first">Command line</h3>
             <code class="small-code-block section-appear second"
-              >npx rollup <span>main.js</span> -o bundle.js -f cjs -p node-resolve -p commonjs -p
-              json</code
+              >npx rollup
+              <span class="fragment highlight-current-code" data-fragment-index="1">
+                main.js
+                <div class="white-box highlight-box">Entry file</div>
+              </span>
+              <span class="fragment highlight-current-code" data-fragment-index="2"
+                >-o bundle.js
+                <div class="white-box highlight-box">Bundle file</div></span
+              >
+              <span class="fragment highlight-current-code" data-fragment-index="3"
+                >-f cjs
+                <div class="white-box highlight-box">CommonJS output</div></span
+              >
+              <span class="fragment highlight-current-code" data-fragment-index="4"
+                >-p node-resolve -p commonjs -p json
+                <div class="white-box highlight-box align-right">
+                  Plugins<br />
+                  <ul>
+                    <li>
+                      resolve & bundle files from <strong>node_modules</strong
+                      ><br />(@rollup/plugin-node-resolve)
+                    </li>
+                    <li>process <strong>CommonJS</strong> input<br />(@rollup/plugin-commonjs)</li>
+                    <li>process <strong>JSON</strong> input<br />(@rollup/plugin-json)</li>
+                  </ul>
+                </div></span
+              ></code
             >
-            <h3 class="fragment" data-fragment-index="1">Configuration file</h3>
-            <div class="fragment appear first" data-fragment-index="1">
+            <h3 class="fragment" data-fragment-index="5">Configuration file</h3>
+            <div class="fragment appear first" data-fragment-index="5">
               <static-codemirror>
                 <pre>
 import nodeResolve from '@rollup/plugin-node-resolve';

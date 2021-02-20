@@ -172,6 +172,10 @@ section.has-dark-background h6 {
   padding: 0 0 0 54px;
 }
 
+.reveal ul:last-child {
+  margin-bottom: 0;
+}
+
 .reveal ol > li,
 .reveal ul > li {
   margin: 0;

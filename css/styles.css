@@ -92,6 +92,61 @@
   font-size: var(--code-font-size);
 }
 
+.reveal .slides section .highlight-current-code {
+  opacity: 1;
+  visibility: inherit;
+  position: relative;
+  display: inline-block;
+}
+
+.highlight-current-code.current-fragment {
+  color: white;
+  background-color: var(--highlight-color);
+  border-radius: 8px;
+  padding: 2px 8px;
+  margin: -2px -8px;
+}
+
+.highlight-box {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  white-space: nowrap;
+  transform: translate(-50%, 0);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  font-family: var(--main-font);
+  font-size: 30px;
+}
+
+.highlight-box.align-right {
+  left: unset;
+  right: 0;
+  transform: unset;
+}
+
+.highlight-current-code.current-fragment > .highlight-box {
+  visibility: visible;
+  opacity: 1;
+}
+
+.white-box ul {
+  padding-left: 40px;
+}
+
+.white-box ul > li::before {
+  left: -40px;
+}
+
+.white-box ul > li {
+  margin-bottom: 10px;
+}
+
+.white-box ul > li:last-child {
+  margin-bottom: 0;
+}
+
 .stderr {
   color: orange;
 }
