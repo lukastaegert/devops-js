@@ -1,12 +1,12 @@
 export const codeSamples = {
   injectInformation: {
-    configInit: `export default {
+    config: `export default {
   input: 'main.js',
   output: {
     format: 'es'
   }
 }`,
-    config: `export default {
+    configExpected: `export default {
   input: 'main.js',
   plugins: [{
     load(id) {
@@ -37,6 +37,16 @@ console.log(\`Built for $\{type}.\`);`
   input: 'main.js',
   plugins: [{
     transform(code) {
+    }
+  }],
+  output: {
+    format: 'es'
+  }
+}`,
+    configExpected: `export default {
+  input: 'main.js',
+  plugins: [{
+    transform(code) {
       return code.replace(
         /\\/\\*REMOVE\\*\\/[^\\n]*\\n/g,
         ''
@@ -56,8 +66,18 @@ console.log('also important');`
       }
     ]
   },
-  mockFiles: {
+  replaceFiles: {
     config: `export default {
+  input: 'main.js',
+  plugins: [{
+    resolveId(src, importer) {
+    }
+  }],
+  output: {
+    format: 'es'
+  }
+}`,
+    configExpected: `export default {
   input: 'main.js',
   plugins: [{
     async resolveId(src, importer) {
@@ -92,38 +112,20 @@ log('Hello');`
       }
     ]
   },
-  externalInformation: {
+  virtualModules: {
     config: `export default {
   input: 'main.js',
   plugins: [{
-    async resolveId(src, importer) {
-      const resolved = await this
-        .resolve(src, importer,
-          {skipSelf: true});
-      if (resolved.id
-          === '/build.js') {
-        return false;
-      }
+    resolveId(src) {
+    },
+    load(id) {
     }
   }],
   output: {
     format: 'es'
   }
 }`,
-    input: [
-      {
-        fileName: '/main.js',
-        code: `import { env } from './build.js';
-console.log(\`Built for $\{env}.\`);`
-      },
-      {
-        fileName: '/build.js',
-        code: `export const env = 'development';`
-      }
-    ]
-  },
-  virtualModules: {
-    config: `export default {
+    configExpected: `export default {
   input: 'main.js',
   plugins: [{
     resolveId(src) {
@@ -152,6 +154,16 @@ console.log(\`Built for $\{env}.\`);`
   },
   buildInformation: {
     config: `export default {
+  input: 'main.js',
+  plugins: [{
+    generateBundle(options, bundle) {
+    }
+  }],
+  output: {
+    format: 'es'
+  }
+}`,
+    configExpected: `export default {
   input: 'main.js',
   external: ['/build.js'],
   plugins: [{

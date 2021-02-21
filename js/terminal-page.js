@@ -10,6 +10,7 @@ class TerminalPage extends HTMLElement {
 
   _createOutput() {
     const wrapper = document.createElement('pre');
+    wrapper.classList.add('terminal-page-wrapper');
     this.appendChild(wrapper);
     this._output = document.createElement('code');
     this._output.setAttribute('class', 'terminal-page-code');

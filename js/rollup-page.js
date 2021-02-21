@@ -1,12 +1,12 @@
+import { CodeMirrorContainer } from './code-mirror-container.js';
 import { codeSamples } from './code-samples.js';
 import { rollUpPage } from './rollup-integration.js';
 
 const configName = 'rollup.config.js';
 
-class RollupPage extends HTMLElement {
+class RollupPage extends CodeMirrorContainer {
   constructor() {
     super();
-    this._codeMirrors = new Set();
     const codeSample = codeSamples[this.getAttribute('code-sample')];
     this._createColumnContainer();
     this._createConfigColumn(codeSample.config);
@@ -15,7 +15,7 @@ class RollupPage extends HTMLElement {
     this._input = this._createFilesFromCode(codeSample.input, this._inputOutputColumn);
     this._output = {};
     this.addEventListener('keypress', event => event.stopPropagation());
-    this._registerResizeHandler();
+    this._resizeCodeMirrors();
   }
 
   _createColumnContainer() {
@@ -138,40 +138,6 @@ class RollupPage extends HTMLElement {
         }
       } while (this._needsUpdate);
       this._updating = false;
-    }
-  }
-
-  _registerResizeHandler() {
-    let parent = this.parentElement;
-    while (parent && parent.tagName !== 'SECTION') {
-      parent = parent.parentElement;
-    }
-    Reveal.on('resize', () => this._resizeCodeMirrors());
-    Reveal.on('slidechanged', ({ currentSlide }) => {
-      if (parent === currentSlide) {
-        this._refreshCodeMirrors();
-      }
-    });
-    this._resizeCodeMirrors();
-  }
-
-  _resizeCodeMirrors() {
-    const scaleFactorMatch = document
-      .querySelector('.slides')
-      .style.transform.match(/scale\(([^)]+)\)/);
-    const scaleFactor = scaleFactorMatch ? Number(scaleFactorMatch[1]) : 1;
-    for (const element of this.querySelectorAll(
-      '.slides .CodeMirror-cursors, .CodeMirror-measure:nth-child(2) + div'
-    )) {
-      element.style.transform = `scale(${1 / scaleFactor})`;
-      element.style.transformOrigin = `0 0`;
-    }
-    this._refreshCodeMirrors();
-  }
-
-  _refreshCodeMirrors() {
-    for (const codeMirror of this._codeMirrors) {
-      codeMirror.refresh();
     }
   }
 }

@@ -6,14 +6,11 @@
   box-shadow: none;
 }
 
-.terminal-page-code {
-  background-color: white;
-}
-
 .CodeMirror {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
   font-size: var(--code-font-size);
   height: unset;
+  border-radius: 10px;
 }
 
 .file-container.output .CodeMirror.cm-s-error {
@@ -45,10 +42,57 @@
   box-shadow: var(--heading1-text-shadow);
 }
 
+.lifecycle-grid {
+  display: grid;
+  grid-template-columns: max-content max-content max-content max-content;
+  grid-template-rows: 15px;
+  grid-column-gap: 20px;
+  grid-row-gap: 40px;
+  margin-top: 40px;
+}
+
 .key-value-table {
   display: grid;
   grid-template-columns: max-content max-content;
   grid-column-gap: 10px;
+}
+
+.rows-plugin {
+  grid-row: 1/5;
+}
+
+.row-resolveid {
+  grid-row: 2/3;
+}
+
+.row-load {
+  grid-row: 3/4;
+}
+
+.row-transform {
+  grid-row: 4/5;
+}
+
+.column-hooks {
+  grid-column: 1/2;
+  position: relative;
+}
+
+.column-plugina {
+  grid-column: 2/3;
+}
+
+.column-pluginb {
+  grid-column: 3/4;
+}
+
+.column-core {
+  grid-column: 4/5;
+}
+
+.plugin-code {
+  margin: 0 20px;
+  position: relative;
 }
 
 .small-code-block {
@@ -149,6 +193,15 @@
 
 .stderr {
   color: orange;
+}
+
+.terminal-page-code {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.terminal-page-wrapper {
+  border-radius: 10px;
 }
 
 .terminal-input {
