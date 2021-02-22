@@ -29,12 +29,8 @@ class TerminalPage extends HTMLElement {
         input.value = '';
       }
     });
-    let parent = this.parentElement;
-    while (parent && parent.tagName !== 'SECTION') {
-      parent = parent.parentElement;
-    }
-    Reveal.on('slidechanged', ({ currentSlide }) => {
-      if (parent === currentSlide) {
+    this.addEventListener('transitionend', () => {
+      if (this.classList.contains('current-fragment')) {
         input.focus({ preventScroll: true });
         input.selectionStart = input.selectionEnd = input.value.length;
       }
