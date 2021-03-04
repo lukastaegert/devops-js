@@ -1,6 +1,7 @@
 export class TerminalServerConnection {
-  constructor(onMessage) {
+  constructor(onMessage, onError) {
     this._onMessage = onMessage;
+    this._onError = onError;
     this._waitingCommands = [];
   }
 
@@ -19,6 +20,7 @@ export class TerminalServerConnection {
     this._client = new WebSocket('ws://localhost:9000');
     this._client.addEventListener('open', this._handleOpenConnection.bind(this), { once: true });
     this._client.addEventListener('close', this._handleClose.bind(this), { once: true });
+    this._client.addEventListener('error', this._onError);
   }
 
   _handleOpenConnection() {

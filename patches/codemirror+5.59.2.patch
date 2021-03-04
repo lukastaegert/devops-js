@@ -1,0 +1,14 @@
+diff --git a/node_modules/codemirror/lib/codemirror.js b/node_modules/codemirror/lib/codemirror.js
+index 9aa6da5..e764828 100644
+--- a/node_modules/codemirror/lib/codemirror.js
++++ b/node_modules/codemirror/lib/codemirror.js
+@@ -4238,7 +4238,8 @@
+   }
+ 
+   function setDocumentHeight(cm, measure) {
+-    cm.display.sizer.style.minHeight = measure.docHeight + "px";
++    // This causes unintended white-space below editors
++    // cm.display.sizer.style.minHeight = measure.docHeight + "px";
+     cm.display.heightForcer.style.top = measure.docHeight + "px";
+     cm.display.gutters.style.height = (measure.docHeight + cm.display.barHeight + scrollGap(cm)) + "px";
+   }

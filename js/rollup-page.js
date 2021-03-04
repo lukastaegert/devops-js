@@ -13,6 +13,7 @@ class RollupPage extends CodeMirrorContainer {
     this._inputOutputColumn = document.createElement('div');
     this._columnContainer.appendChild(this._inputOutputColumn);
     this._input = this._createFilesFromCode(codeSample.input, this._inputOutputColumn);
+    this._expectedConfig = codeSample.configExpected;
     this._output = {};
     this.addEventListener('keypress', event => event.stopPropagation());
     this._resizeCodeMirrors();
@@ -32,6 +33,9 @@ class RollupPage extends CodeMirrorContainer {
       configColumn
     )[configName];
     this._config.on('focus', () => this._handleCodeChanges());
+    this._config.setOption('extraKeys', {
+      'Ctrl-S': () => this._config.setValue(this._expectedConfig)
+    });
   }
 
   async _removeFileContainer(codeMirror, delay = 0) {
@@ -88,7 +92,9 @@ class RollupPage extends CodeMirrorContainer {
         fileName,
         content,
         delay++,
-        ['Error', 'Warnings'].includes(fileName) ? { theme: 'error', mode: null } : {}
+        ['Error', 'Warnings'].includes(fileName)
+          ? { theme: 'error', mode: null, lineWrapping: true }
+          : {}
       );
       await wait();
     }

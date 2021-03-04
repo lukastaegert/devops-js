@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+.footer {
+  position: absolute;
+  bottom: 20px;
+}
+
 .reveal .CodeMirror pre {
   box-shadow: none;
 }
@@ -32,6 +37,12 @@
   flex-direction: column;
   width: min-content;
   margin: 70px auto 0;
+}
+
+.quote-box {
+  margin: auto;
+  width: max-content;
+  font-style: italic;
 }
 
 .white-box {
@@ -162,6 +173,7 @@
   transition: all 0.2s ease;
   font-family: var(--main-font);
   font-size: 30px;
+  font-style: italic;
 }
 
 .highlight-box.align-right {
@@ -192,7 +204,7 @@
 }
 
 .stderr {
-  color: orange;
+  color: var(--highlight-color);
 }
 
 .terminal-page-code {
@@ -206,6 +218,11 @@
 
 .terminal-input {
   font-weight: bold;
+}
+
+.terminal-error {
+  font-weight: bold;
+  color: var(--highlight-color);
 }
 
 /* selfdraw */

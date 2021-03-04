@@ -38,9 +38,22 @@ class TerminalPage extends HTMLElement {
   }
 
   _createServerConnection() {
-    this._connection = new TerminalServerConnection(({ data, type }) => {
-      this._appendOutput(data, type);
-    });
+    this._connection = new TerminalServerConnection(
+      ({ data, type }) => this._appendOutput(data, type),
+      () => {
+        this._clearOutput();
+        this._appendOutput(
+          `This is not supported in the web version as it requires a locally
+running server. You can check out the repository and run
+
+npm install
+npm start
+
+to try it out.`,
+          'terminal-error'
+        );
+      }
+    );
   }
 
   _appendOutput(output, format) {
@@ -49,6 +62,12 @@ class TerminalPage extends HTMLElement {
     span.appendChild(document.createTextNode(output));
     this._output.appendChild(span);
     this._output.scrollTop = this._output.scrollHeight;
+  }
+
+  _clearOutput() {
+    while (this._output.firstChild) {
+      this._output.firstChild.remove();
+    }
   }
 }
 

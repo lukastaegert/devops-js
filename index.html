@@ -13,6 +13,7 @@
     <div class="reveal">
       <div class="slides">
         <section
+          data-transition="zoom"
           data-background-image="img/rollup-left.svg"
           data-background-color="#FF5023"
           data-background-transition="zoom"
@@ -28,12 +29,21 @@
           </div>
         </section>
 
-        <section class="center">
-          <blockquote>Why don't we run JavaScript like a scripting language any more?</blockquote>
-          <aside class="notes">Why are using complex build pipelines?</aside>
+        <section
+          data-transition="zoom"
+          data-background-image="img/rollup-left.svg"
+          data-background-color="#FF5023"
+          data-background-transition="zoom"
+          data-background-position="left"
+          class="center"
+        >
+          <div class="white-box quote-box">
+            Why don't we run JavaScript like a<br />scripting language<br />any more?
+          </div>
+          <aside class="notes">Why are we using complex build pipelines?</aside>
         </section>
 
-        <section>
+        <section data-transition="convex">
           <div class="left-align-box">
             <h2>Exhibit A</h2>
             <div class="section-appear first">web application load time over slow network</div>
@@ -74,15 +84,23 @@
                     style="width: 300px; margin: 0; border-radius: 10px"
                   />
                 </div>
-                <ul class="fragment" data-fragment-index="3">
-                  <li style="white-space: nowrap">No load/parse<br />waterfall</li>
-                </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <section>
+        <section
+          data-transition="zoom"
+          data-background-image="img/rollup-left.svg"
+          data-background-color="#FF5023"
+          data-background-transition="fade"
+          data-background-position="left"
+          class="center"
+        >
+          <div class="white-box quote-box">Bundling avoids the<br />waterfall</div>
+        </section>
+
+        <section data-transition="convex">
           <div class="left-align-box" style="width: 90%">
             <h2>Exhibit B</h2>
             <div class="section-appear first">node server size and startup time</div>
@@ -98,15 +116,21 @@
           </div>
         </section>
 
-        <section class="center">
-          <blockquote>Bundling eliminates the<br />load/parse waterfall.</blockquote>
-          <blockquote class="fragment">
-            Also for <strong>cloud functions</strong>,<br /><strong>command line tools</strong
-            >,<br />…
-          </blockquote>
+        <section
+          data-transition="zoom"
+          data-background-image="img/rollup-left.svg"
+          data-background-color="#FF5023"
+          data-background-transition="fade"
+          data-background-position="left"
+          class="center"
+        >
+          <div class="white-box quote-box">
+            Bundling decreases <strong>size</strong> and <strong>startup time</strong><br />for
+            servers, cloud functions,<br />command line tools, ….
+          </div>
         </section>
 
-        <section>
+        <section data-transition="convex-in slide-out">
           <div class="left-align-box">
             <h2>Why Rollup?</h2>
             <div class="section-appear first">
@@ -182,13 +206,22 @@ export default {
           </div>
         </section>
 
-        <section class="center">
-          <div>We own the build step, now let's</div>
+        <section
+          data-transition="zoom"
+          data-background-image="img/rollup-left.svg"
+          data-background-color="#FF5023"
+          data-background-transition="fade"
+          data-background-position="left"
+          class="center"
+        >
+          <h3 style="letter-spacing: -0.5px; margin: 0 0 0 0">We own the build step, now let's</h3>
           <h1 style="margin: 0">Own the code</h1>
-          <div class="section-appear first">—write our own plugins!</div>
+          <h3 class="section-appear first" style="letter-spacing: 5px; margin: 0 0 0 0">
+            —write our own plugins!
+          </h3>
         </section>
 
-        <section>
+        <section data-transition="convex-in slide-out">
           <div class="left-align-box full-width">
             <h3>1. Inject information</h3>
             <rollup-page code-sample="injectInformation"></rollup-page>
@@ -389,14 +422,24 @@ export default {
           </div>
         </section>
 
-        <section class="center">
+        <section
+          data-transition="zoom"
+          data-background-image="img/rollup-left.svg"
+          data-background-color="#FF5023"
+          data-background-transition="fade"
+          data-background-position="left"
+          class="center"
+        >
           <h1>There is much more...</h1>
-          <div class="section-appear first">Check out the documentation:</div>
-          <a class="section-appear first" href="https://rollupjs.org/guide/en/#plugin-development"
-            >rollupjs.org/guide/en/#plugin-development</a
-          >
+          <div class="white-box quote-box section-appear first">
+            Check out the documentation:<br /><a
+              href="https://rollupjs.org/guide/en/#plugin-development"
+              >rollupjs.org/guide/en/#plugin-development</a
+            >
+          </div>
         </section>
-        <section data-transition="slide-in zoom-out">
+
+        <section data-transition="convex-in slide-out">
           <div class="left-align-box">
             <h2>High level tooling</h2>
             <h3 class="fragment" data-fragment-index="1">Frontend dev tools powered by Rollup</h3>
@@ -437,7 +480,7 @@ export default {
           data-background-color="#FF5023"
           data-background-transition="fade"
           data-background-position="left"
-          data-transition="fade"
+          data-transition="zoom"
           data-transition-speed="slow"
           data-btransition-speed="slow"
         >
@@ -452,6 +495,8 @@ export default {
     </div>
 
     <script>
+      // This avoids using the zoom property in Revealjs,
+      // which CodeMirror does not like at all
       Object.defineProperty(navigator, 'userAgent', { value: 'pleaseignore' });
     </script>
     <script src="node_modules/reveal.js/dist/reveal.js"></script>
