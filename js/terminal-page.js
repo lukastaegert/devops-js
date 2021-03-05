@@ -44,7 +44,11 @@ class TerminalPage extends HTMLElement {
         this._clearOutput();
         this._appendOutput(
           `This is not supported in the web version as it requires a locally
-running server. You can check out the repository and run
+running server. You can check out the repository at
+
+https://github.com/lukastaegert/devops-js
+
+and run
 
 npm install
 npm start
