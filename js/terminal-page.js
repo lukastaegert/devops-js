@@ -13,7 +13,7 @@ class TerminalPage extends HTMLElement {
     wrapper.classList.add('terminal-page-wrapper');
     this.appendChild(wrapper);
     this._output = document.createElement('code');
-    this._output.setAttribute('class', 'terminal-page-code');
+    this._output.classList.add('terminal-page-code');
     wrapper.appendChild(this._output);
   }
 
@@ -58,7 +58,7 @@ to try it out.`,
 
   _appendOutput(output, format) {
     const span = document.createElement('span');
-    span.setAttribute('class', format);
+    span.classList.add(format);
     span.appendChild(document.createTextNode(output));
     this._output.appendChild(span);
     this._output.scrollTop = this._output.scrollHeight;

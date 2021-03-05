@@ -13,29 +13,31 @@
   <body>
     <div class="reveal">
       <div class="slides">
+        <div class="white-box quote-box slide-url">slides: lukastaegert.github.io/devops-js</div>
         <section
-          data-transition="zoom"
+          data-transition="slide"
           data-background-image="img/rollup-left.svg"
           data-background-color="#FF5023"
-          data-background-transition="zoom"
           data-background-position="left"
+          data-show-slide-url
           class="center"
         >
-          <h3 style="letter-spacing: 40px; margin: 0 -40px 0 0">Own your</h3>
+          <h3 style="letter-spacing: 40px; margin: 40px -40px 0 0">Own your</h3>
           <h1 style="margin: 0; font-weight: bold">Build Step</h1>
           <h3 style="margin: 0 -12px 0 0; letter-spacing: 12px">—own your code</h3>
           <div class="name-box white-box">
             <div style="white-space: nowrap">Lukas Taegert-Atkinson</div>
             <img src="img/tng.svg" />
           </div>
+          <aside class="notes">How to use Rollup to improve your generated JavaScript code?</aside>
         </section>
 
         <section
-          data-transition="zoom"
+          data-transition="slide-in zoom-out"
           data-background-image="img/rollup-left.svg"
           data-background-color="#FF5023"
-          data-background-transition="zoom"
           data-background-position="left"
+          data-show-slide-url
           class="center"
         >
           <div class="white-box quote-box">
@@ -44,7 +46,7 @@
           <aside class="notes">Why are we using complex build pipelines?</aside>
         </section>
 
-        <section data-transition="convex">
+        <section data-transition="convex-in slide-out">
           <div class="left-align-box">
             <h2>Exhibit A</h2>
             <div class="section-appear first">web application load time over slow network</div>
@@ -91,17 +93,18 @@
         </section>
 
         <section
-          data-transition="zoom"
+          data-transition="slide-in zoom-out"
           data-background-image="img/rollup-left.svg"
           data-background-color="#FF5023"
-          data-background-transition="fade"
           data-background-position="left"
           class="center"
         >
-          <div class="white-box quote-box">Bundling avoids the<br />waterfall</div>
+          <div class="white-box quote-box">
+            Bundling avoids the<br />load → parse → discover<br />waterfall
+          </div>
         </section>
 
-        <section data-transition="convex">
+        <section data-transition="convex-in slide-out">
           <div class="left-align-box" style="width: 90%">
             <h2>Exhibit B</h2>
             <div class="section-appear first">node server size and startup time</div>
@@ -118,10 +121,9 @@
         </section>
 
         <section
-          data-transition="zoom"
+          data-transition="slide-in zoom-out"
           data-background-image="img/rollup-left.svg"
           data-background-color="#FF5023"
-          data-background-transition="fade"
           data-background-position="left"
           class="center"
         >
@@ -153,66 +155,12 @@
           </div>
         </section>
 
-        <section>
-          <div class="left-align-box">
-            <h2>Using rollup</h2>
-            <h3 class="section-appear first">Command line</h3>
-            <code class="small-code-block section-appear second"
-              >npx rollup
-              <span class="fragment highlight-current-code" data-fragment-index="1">
-                main.js
-                <div class="white-box highlight-box">Entry file</div>
-              </span>
-              <span class="fragment highlight-current-code" data-fragment-index="2"
-                >-o bundle.js
-                <div class="white-box highlight-box">Bundle file</div></span
-              >
-              <span class="fragment highlight-current-code" data-fragment-index="3"
-                >-f cjs
-                <div class="white-box highlight-box">CommonJS output</div></span
-              >
-              <span class="fragment highlight-current-code" data-fragment-index="4"
-                >-p node-resolve -p commonjs -p json
-                <div class="white-box highlight-box align-right">
-                  Plugins<br />
-                  <ul>
-                    <li>
-                      resolve & bundle files from <strong>node_modules</strong
-                      ><br />(@rollup/plugin-node-resolve)
-                    </li>
-                    <li>process <strong>CommonJS</strong> input<br />(@rollup/plugin-commonjs)</li>
-                    <li>process <strong>JSON</strong> input<br />(@rollup/plugin-json)</li>
-                  </ul>
-                </div></span
-              ></code
-            >
-            <h3 class="fragment" data-fragment-index="5">Configuration file</h3>
-            <div class="fragment appear first" data-fragment-index="5">
-              <static-codemirror>
-                <pre>
-import nodeResolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json';
-
-export default {
-  input: 'main.js',
-  plugins: [nodeResolve(), commonjs(), json()],
-  output: {
-    format: 'cjs'
-  }
-}
-                </pre>
-              </static-codemirror>
-            </div>
-          </div>
-        </section>
-
         <section
           data-transition="zoom"
           data-background-image="img/rollup-left.svg"
           data-background-color="#FF5023"
-          data-background-transition="fade"
           data-background-position="left"
+          data-show-slide-url
           class="center"
         >
           <h3 style="letter-spacing: -0.5px; margin: 0 0 0 0">We own the build step, now let's</h3>
@@ -222,9 +170,9 @@ export default {
           </h3>
         </section>
 
-        <section data-transition="convex-in slide-out">
+        <section data-transition="convex-in slide-out" data-show-slide-url>
           <div class="left-align-box full-width">
-            <h3>1. Inject information</h3>
+            <h3 style="margin-top: 60px">1. Inject information</h3>
             <rollup-page code-sample="injectInformation"></rollup-page>
           </div>
         </section>
@@ -427,7 +375,6 @@ export default {
           data-transition="zoom"
           data-background-image="img/rollup-left.svg"
           data-background-color="#FF5023"
-          data-background-transition="fade"
           data-background-position="left"
           class="center"
         >
@@ -479,11 +426,9 @@ export default {
           class="center"
           data-background-image="img/rollup-left.svg"
           data-background-color="#FF5023"
-          data-background-transition="fade"
           data-background-position="left"
           data-transition="zoom"
-          data-transition-speed="slow"
-          data-btransition-speed="slow"
+          data-show-slide-url
         >
           <h1 style="margin: 0">Thank you</h1>
           <h2 style="margin: 0">& happy bundling!</h2>

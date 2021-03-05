@@ -32,11 +32,21 @@
   font-size: 20px;
 }
 
+.slide-url {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  transition: opacity 0.6s ease;
+  opacity: 0;
+  font-size: 30px;
+}
+
 .name-box {
   display: flex;
   flex-direction: column;
   width: min-content;
-  margin: 70px auto 0;
+  margin: 40px auto 0;
 }
 
 .quote-box {
@@ -118,6 +128,12 @@
 
 .full-width {
   width: 100%;
+}
+
+.solution-button {
+  display: inline-block;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 .file-container > label {

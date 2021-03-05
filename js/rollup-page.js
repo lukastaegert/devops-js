@@ -21,7 +21,7 @@ class RollupPage extends CodeMirrorContainer {
 
   _createColumnContainer() {
     this._columnContainer = document.createElement('div');
-    this._columnContainer.setAttribute('class', 'two-columns');
+    this._columnContainer.classList.add('two-columns');
     this.appendChild(this._columnContainer);
   }
 
@@ -36,6 +36,14 @@ class RollupPage extends CodeMirrorContainer {
     this._config.setOption('extraKeys', {
       'Ctrl-S': () => this._config.setValue(this._expectedConfig)
     });
+    const solutionButton = document.createElement('a');
+    solutionButton.classList.add('solution-button');
+    solutionButton.appendChild(document.createTextNode('Show Solution'));
+    solutionButton.addEventListener('click', event => {
+      event.preventDefault();
+      this._config.setValue(this._expectedConfig);
+    });
+    configColumn.appendChild(solutionButton);
   }
 
   async _removeFileContainer(codeMirror, delay = 0) {
@@ -58,7 +66,7 @@ class RollupPage extends CodeMirrorContainer {
 
   _addFileContainer(parent, fileName, code) {
     const fileContainer = document.createElement('div');
-    fileContainer.setAttribute('class', 'file-container');
+    fileContainer.classList.add('file-container');
     fileContainer.innerHTML = `<label>${fileName}</label>`;
     parent.appendChild(fileContainer);
     return this._createCodeMirror(fileContainer, code);
@@ -102,7 +110,7 @@ class RollupPage extends CodeMirrorContainer {
 
   _addOutputContainer(parent, fileName, code, delay, options = {}) {
     const fileContainer = document.createElement('div');
-    fileContainer.setAttribute('class', 'file-container output');
+    fileContainer.classList.add('file-container output');
     fileContainer.innerHTML = `<label>${fileName}</label>`;
     parent.appendChild(fileContainer);
     zoomIn(fileContainer, delay);
