@@ -174,7 +174,7 @@ console.log(\`Built for $\{env}.\`);`
           Object.keys(bundle)
           .map(name => \`\${name}: \${
           bundle[name].code.length}\`)
-          .join('\\n')
+          .join(',\\n')
         }\\\`;\`});
     }
   }],
@@ -187,12 +187,12 @@ console.log(\`Built for $\{env}.\`);`
         fileName: '/main.js',
         code: `import { files } from './build.js';
 console.log(files);
-import('./other.js');
+import('./dynamic.js');
 `
       },
       {
-        fileName: '/other.js',
-        code: `console.log('other');`
+        fileName: '/dynamic.js',
+        code: `console.log('dynamic chunk');`
       }
     ]
   }

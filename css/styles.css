@@ -18,6 +18,11 @@
   border-radius: 10px;
 }
 
+.CodeMirror .CodeMirror-scroll {
+  height: auto !important;
+  overflow: visible !important;
+}
+
 .file-container.output .CodeMirror.cm-s-error {
   box-shadow: none;
   background: transparent;
@@ -128,6 +133,13 @@
 
 .full-width {
   width: 100%;
+}
+
+@media (min-aspect-ratio: 8/5) {
+  .left-align-box.full-width {
+    margin-left: -100px;
+    width: calc(100% + 200px);
+  }
 }
 
 .solution-button {
