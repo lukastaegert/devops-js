@@ -110,7 +110,8 @@ class RollupPage extends CodeMirrorContainer {
 
   _addOutputContainer(parent, fileName, code, delay, options = {}) {
     const fileContainer = document.createElement('div');
-    fileContainer.classList.add('file-container output');
+    fileContainer.classList.add('file-container');
+    fileContainer.classList.add('output');
     fileContainer.innerHTML = `<label>${fileName}</label>`;
     parent.appendChild(fileContainer);
     zoomIn(fileContainer, delay);
