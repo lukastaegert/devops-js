@@ -4,7 +4,7 @@
 
 .footer {
   position: absolute;
-  bottom: 20px;
+  bottom: 40px;
 }
 
 .reveal .CodeMirror pre {
@@ -12,10 +12,24 @@
 }
 
 .CodeMirror {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 15%);
   font-size: var(--code-font-size);
   height: unset;
-  border-radius: 10px;
+  border-radius: 20px;
+}
+
+.CodeMirror-lines {
+  padding: 8px 0;
+}
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+  padding: 0 8px;
+}
+
+.CodeMirror-cursor {
+  border-left-width: 2px;
+  border-right: none;
+  width: 0;
 }
 
 .CodeMirror .CodeMirror-scroll {
@@ -34,7 +48,7 @@
 }
 
 .sub-heading {
-  font-size: 20px;
+  font-size: 40px;
 }
 
 .white-box.slide-url {
@@ -44,14 +58,14 @@
   transform: translateX(-50%);
   transition: opacity 0.6s ease;
   opacity: 0;
-  font-size: 30px;
+  font-size: 60px;
 }
 
 .name-box {
   display: flex;
   flex-direction: column;
   width: min-content;
-  margin: 40px auto 0;
+  margin: 80px auto 0;
 }
 
 .quote-box {
@@ -61,8 +75,8 @@
 }
 
 .white-box {
-  padding: 10px 20px;
-  border-radius: 20px;
+  padding: 20px 40px;
+  border-radius: 40px;
   color: black;
   background-color: white;
   box-shadow: var(--heading1-text-shadow);
@@ -71,16 +85,16 @@
 .lifecycle-grid {
   display: grid;
   grid-template-columns: max-content max-content max-content max-content;
-  grid-template-rows: 15px;
-  grid-column-gap: 20px;
-  grid-row-gap: 40px;
-  margin-top: 40px;
+  grid-template-rows: 30px;
+  grid-column-gap: 40px;
+  grid-row-gap: 80px;
+  margin-top: 80px;
 }
 
 .key-value-table {
   display: grid;
   grid-template-columns: max-content max-content;
-  grid-column-gap: 10px;
+  grid-column-gap: 20px;
 }
 
 .rows-plugin {
@@ -117,12 +131,12 @@
 }
 
 .plugin-code {
-  margin: 0 20px;
+  margin: 0 40px;
   position: relative;
 }
 
 .small-code-block {
-  font-size: 20px;
+  font-size: 40px;
   display: block;
 }
 
@@ -137,21 +151,21 @@
 
 @media (min-aspect-ratio: 8/5) {
   .left-align-box.full-width {
-    margin-left: -100px;
-    width: calc(100% + 200px);
+    margin-left: -200px;
+    width: calc(100% + 400px);
   }
 }
 
 .solution-button {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 20px;
   cursor: pointer;
 }
 
 .file-container > label {
-  line-height: 40px;
+  line-height: 80px;
   display: block;
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
 .file-container:first-child > label {
@@ -159,7 +173,7 @@
 }
 
 .file-container.output .CodeMirror {
-  box-shadow: 0 5px 15px var(--highlight-color);
+  box-shadow: 0 10px 30px var(--highlight-color);
 }
 
 .file-container.output > label {
@@ -169,8 +183,8 @@
 
 .two-columns {
   display: grid;
-  grid-template-columns: calc(50% - 10px) calc(50% - 10px);
-  gap: 20px;
+  grid-template-columns: calc(50% - 20px) calc(50% - 20px);
+  gap: 40px;
   text-align: left;
   font-size: var(--code-font-size);
 }
@@ -185,14 +199,14 @@
 .highlight-current-code.current-fragment {
   color: white;
   background-color: var(--highlight-color);
-  border-radius: 8px;
-  padding: 2px 8px;
-  margin: -2px -8px;
+  border-radius: 16px;
+  padding: 4px 16px;
+  margin: -4px -16px;
 }
 
 .highlight-box {
   position: absolute;
-  top: 40px;
+  top: 80px;
   left: 50%;
   white-space: nowrap;
   transform: translate(-50%, 0);
@@ -200,7 +214,7 @@
   visibility: hidden;
   transition: all 0.2s ease;
   font-family: var(--main-font);
-  font-size: 30px;
+  font-size: 60px;
   font-style: italic;
 }
 
@@ -216,15 +230,15 @@
 }
 
 .white-box ul {
-  padding-left: 40px;
+  padding-left: 80px;
 }
 
 .white-box ul > li::before {
-  left: -40px;
+  left: -80px;
 }
 
 .white-box ul > li {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .white-box ul > li:last-child {
@@ -237,11 +251,11 @@
 
 .terminal-page-code {
   background-color: white;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .terminal-page-wrapper {
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .terminal-input {
@@ -281,7 +295,7 @@ section.future .section-selfdraw {
 .arrow-line {
   stroke: var(--highlight-color);
   fill: transparent;
-  stroke-width: 4px;
+  stroke-width: 8px;
   stroke-linecap: round;
   stroke-linejoin: round;
 }

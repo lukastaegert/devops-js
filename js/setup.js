@@ -5,6 +5,8 @@ Reveal.initialize({
   progress: true,
   center: false,
   margin: 0.08,
+  width: 1920,
+  height: 1400,
   plugins: [RevealHighlight, RevealNotes]
 }).then(() => {
   registerShowSlideUrl();
