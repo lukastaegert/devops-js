@@ -4,7 +4,7 @@
 
 .footer {
   position: absolute;
-  bottom: 40px;
+  bottom: 20px;
 }
 
 .reveal .CodeMirror pre {
@@ -12,24 +12,10 @@
 }
 
 .CodeMirror {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 15%);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
   font-size: var(--code-font-size);
   height: unset;
-  border-radius: 20px;
-}
-
-.CodeMirror-lines {
-  padding: 8px 0;
-}
-.CodeMirror pre.CodeMirror-line,
-.CodeMirror pre.CodeMirror-line-like {
-  padding: 0 8px;
-}
-
-.CodeMirror-cursor {
-  border-left-width: 2px;
-  border-right: none;
-  width: 0;
+  border-radius: 10px;
 }
 
 .CodeMirror .CodeMirror-scroll {
@@ -48,7 +34,7 @@
 }
 
 .sub-heading {
-  font-size: 40px;
+  font-size: 20px;
 }
 
 .white-box.slide-url {
@@ -58,14 +44,15 @@
   transform: translateX(-50%);
   transition: opacity 0.6s ease;
   opacity: 0;
-  font-size: 60px;
+  font-size: 30px;
+  width: 700px;
 }
 
 .name-box {
   display: flex;
   flex-direction: column;
   width: min-content;
-  margin: 80px auto 0;
+  margin: 40px auto 0;
 }
 
 .quote-box {
@@ -75,8 +62,8 @@
 }
 
 .white-box {
-  padding: 20px 40px;
-  border-radius: 40px;
+  padding: 10px 20px;
+  border-radius: 20px;
   color: black;
   background-color: white;
   box-shadow: var(--heading1-text-shadow);
@@ -85,16 +72,16 @@
 .lifecycle-grid {
   display: grid;
   grid-template-columns: max-content max-content max-content max-content;
-  grid-template-rows: 30px;
-  grid-column-gap: 40px;
-  grid-row-gap: 80px;
-  margin-top: 80px;
+  grid-template-rows: 15px;
+  grid-column-gap: 20px;
+  grid-row-gap: 40px;
+  margin-top: 40px;
 }
 
 .key-value-table {
   display: grid;
   grid-template-columns: max-content max-content;
-  grid-column-gap: 20px;
+  grid-column-gap: 10px;
 }
 
 .rows-plugin {
@@ -131,12 +118,12 @@
 }
 
 .plugin-code {
-  margin: 0 40px;
+  margin: 0 20px;
   position: relative;
 }
 
 .small-code-block {
-  font-size: 40px;
+  font-size: 20px;
   display: block;
 }
 
@@ -151,21 +138,21 @@
 
 @media (min-aspect-ratio: 8/5) {
   .left-align-box.full-width {
-    margin-left: -200px;
-    width: calc(100% + 400px);
+    margin-left: -100px;
+    width: calc(100% + 200px);
   }
 }
 
 .solution-button {
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 10px;
   cursor: pointer;
 }
 
 .file-container > label {
-  line-height: 80px;
+  line-height: 40px;
   display: block;
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 .file-container:first-child > label {
@@ -173,7 +160,7 @@
 }
 
 .file-container.output .CodeMirror {
-  box-shadow: 0 10px 30px var(--highlight-color);
+  box-shadow: 0 5px 15px var(--highlight-color);
 }
 
 .file-container.output > label {
@@ -183,8 +170,8 @@
 
 .two-columns {
   display: grid;
-  grid-template-columns: calc(50% - 20px) calc(50% - 20px);
-  gap: 40px;
+  grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+  gap: 20px;
   text-align: left;
   font-size: var(--code-font-size);
 }
@@ -209,14 +196,14 @@
 .highlight-current-code.current-fragment {
   color: white;
   background-color: var(--highlight-color);
-  border-radius: 16px;
-  padding: 4px 16px;
-  margin: -4px -16px;
+  border-radius: 8px;
+  padding: 2px 8px;
+  margin: -2px -8px;
 }
 
 .highlight-box {
   position: absolute;
-  top: 80px;
+  top: 40px;
   left: 50%;
   white-space: nowrap;
   transform: translate(-50%, 0);
@@ -224,7 +211,7 @@
   visibility: hidden;
   transition: all 0.2s ease;
   font-family: var(--main-font);
-  font-size: 60px;
+  font-size: 30px;
   font-style: italic;
 }
 
@@ -240,15 +227,15 @@
 }
 
 .white-box ul {
-  padding-left: 80px;
+  padding-left: 40px;
 }
 
 .white-box ul > li::before {
-  left: -80px;
+  left: -40px;
 }
 
 .white-box ul > li {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .white-box ul > li:last-child {
@@ -261,11 +248,11 @@
 
 .terminal-page-code {
   background-color: white;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .terminal-page-wrapper {
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .terminal-input {
@@ -305,7 +292,7 @@ section.future .section-selfdraw {
 .arrow-line {
   stroke: var(--highlight-color);
   fill: transparent;
-  stroke-width: 8px;
+  stroke-width: 4px;
   stroke-linecap: round;
   stroke-linejoin: round;
 }

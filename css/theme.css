@@ -23,10 +23,10 @@ section.has-dark-background h6 {
 :root {
   --background-color: #fff;
   --main-font: Lato, sans-serif;
-  --main-font-size: 80px;
+  --main-font-size: 40px;
   --main-color: #000;
-  --block-margin: 40px;
-  --heading-margin: 0 0 40px 0;
+  --block-margin: 20px;
+  --heading-margin: 0 0 20px 0;
   --heading-font: League Gothic, Impact, sans-serif;
   --heading-color: #000;
   --heading-line-height: 1.2;
@@ -34,10 +34,9 @@ section.has-dark-background h6 {
   --heading-text-transform: uppercase;
   --heading-text-shadow: none;
   --heading-font-weight: normal;
-  --heading1-text-shadow: 0 2px 0 #ccc, 0 4px 0 #c9c9c9, 0 6px 0 #bbb, 0 8px 0 #b9b9b9,
-    0 10px 0 #aaa, 0 12px 2px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.1),
-    0 2px 6px rgba(0, 0, 0, 0.3), 0 6px 10px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(0, 0, 0, 0.25),
-    0 40px 40px rgba(0, 0, 0, 0.15);
+  --heading1-text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa,
+    0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
+    0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0, 0, 0, 0.15);
   --heading1-size: 3.77em;
   --heading2-size: 2.11em;
   --heading3-size: 1.55em;
@@ -47,10 +46,10 @@ section.has-dark-background h6 {
   --link-color-hover: #0000f1;
   --selection-background-color: rgba(0, 0, 0, 0.99);
   --selection-color: #fff;
-  --code-font-size: 40px;
+  --code-font-size: 20px;
   --highlight-hue: 30;
   --highlight-color: hsl(var(--highlight-hue), 100%, 45%);
-  --pre-shadow-size: 0px 10px 30px;
+  --pre-shadow-size: 0px 5px 15px;
   --pre-shadow: var(--pre-shadow-size) rgba(0, 0, 0, 0.15);
 }
 
@@ -60,7 +59,7 @@ section.has-dark-background h6 {
 
 .reveal {
   font-family: 'Lato', sans-serif;
-  font-size: 80px;
+  font-size: 40px;
   font-weight: normal;
   color: #000;
 }
@@ -92,7 +91,7 @@ section.has-dark-background h6 {
 .reveal h4,
 .reveal h5,
 .reveal h6 {
-  margin: 0 0 40px 0;
+  margin: 0 0 20px 0;
   color: #000;
   font-family: 'League Gothic', Impact, sans-serif;
   font-weight: normal;
@@ -106,30 +105,30 @@ section.has-dark-background h6 {
 .reveal h1 {
   font-size: 3.77em;
   text-shadow: var(--heading1-text-shadow);
-  margin: 40px 0 0 0;
+  margin: 20px 0 0 0;
 }
 
 .reveal h2 {
   font-size: 2.11em;
   text-shadow: var(--heading1-text-shadow);
-  margin: 40px 0 0 0;
+  margin: 20px 0 0 0;
 }
 
 .reveal h3 {
   font-size: 1.55em;
-  margin: 40px 0 0 0;
+  margin: 20px 0 0 0;
 }
 
 .reveal h4 {
   font-size: 1em;
-  margin: 40px 0 0 0;
+  margin: 20px 0 0 0;
 }
 
 /*********************************************
  * OTHER
  *********************************************/
 .reveal p {
-  margin: 40px 0;
+  margin: 20px 0;
   line-height: 1.3;
 }
 
@@ -169,8 +168,8 @@ section.has-dark-background h6 {
 .reveal dl,
 .reveal ul {
   text-align: left;
-  margin: 0 0 40px 0;
-  padding: 0 0 0 108px;
+  margin: 0 0 20px 0;
+  padding: 0 0 0 54px;
 }
 
 .reveal ul:last-child {
@@ -186,7 +185,7 @@ section.has-dark-background h6 {
 .reveal ul > li::before {
   content: '☞';
   position: absolute;
-  left: -108px;
+  left: -54px;
 }
 
 .reveal ol {
@@ -210,7 +209,7 @@ section.has-dark-background h6 {
 .reveal ol ol,
 .reveal ol ul {
   display: block;
-  margin-left: 80px;
+  margin-left: 40px;
 }
 
 .reveal dt {
@@ -218,7 +217,7 @@ section.has-dark-background h6 {
 }
 
 .reveal dd {
-  margin-left: 80px;
+  margin-left: 40px;
 }
 
 .reveal q {
@@ -229,7 +228,7 @@ section.has-dark-background h6 {
   display: block;
   position: relative;
   width: 100%;
-  margin: 40px 0;
+  margin: 20px 0;
   text-align: left;
   font-size: var(--code-font-size);
   font-family: monospace;
@@ -245,9 +244,9 @@ section.has-dark-background h6 {
 
 .reveal pre code {
   display: block;
-  padding: 10px;
+  padding: 5px;
   overflow: auto;
-  max-height: 800px;
+  max-height: 400px;
   word-wrap: normal;
 }
 
@@ -265,7 +264,7 @@ section.has-dark-background h6 {
 .reveal table td {
   text-align: left;
   padding: 0.2em 0.5em 0.2em 0.5em;
-  border-bottom: 2px solid;
+  border-bottom: 1px solid;
 }
 
 .reveal table th[align='center'],
@@ -305,12 +304,12 @@ section.has-dark-background h6 {
 }
 
 .reveal img {
-  margin: 40px 0;
+  margin: 20px 0;
 }
 
 .reveal input {
   font: var(--code-font-size) monospace;
-  padding: 20px;
+  padding: 10px;
   width: 100%;
   box-shadow: var(--pre-shadow);
   border: none;
@@ -345,8 +344,8 @@ section.has-dark-background h6 {
  * Frame helper
  *********************************************/
 .reveal .r-frame {
-  border: 8px solid #000;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border: 4px solid #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
 .reveal a .r-frame {
@@ -355,7 +354,7 @@ section.has-dark-background h6 {
 
 .reveal a:hover .r-frame {
   border-color: #00008b;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
 }
 
 /*********************************************
