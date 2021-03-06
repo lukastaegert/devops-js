@@ -189,6 +189,16 @@
   font-size: var(--code-font-size);
 }
 
+.reveal .slides section .enlarge {
+  opacity: 1;
+  visibility: inherit;
+  transform: scale(0.62);
+}
+
+.reveal .slides section .enlarge.visible {
+  transform: scale(1);
+}
+
 .reveal .slides section .highlight-current-code {
   opacity: 1;
   visibility: inherit;

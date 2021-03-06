@@ -44,16 +44,14 @@ class TerminalPage extends HTMLElement {
         this._clearOutput();
         this._appendOutput(
           `This is not supported in the web version as it requires a locally
-running server. You can check out the repository at
+running server, and I do not want you to mess up my computer by using
+mine.
 
-https://github.com/lukastaegert/devops-js
+But there ARE examples that work in the web version later starting at
+slide 7, so stay tuned!
 
-and run
-
-npm install
-npm start
-
-to try it out.`,
+(Otherwise if you really want to run it locally, the repo can be found
+at https://github.com/lukastaegert/devops-js)`,
           'terminal-error'
         );
       }

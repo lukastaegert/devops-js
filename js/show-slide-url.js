@@ -1,11 +1,21 @@
 export function registerShowSlideUrl() {
-  const slideUrl = document.querySelector('.slide-url');
+  const slides = Reveal.getSlidesElement();
+  const slideUrl = document.createElement('div');
+  slides.appendChild(slideUrl);
+  slideUrl.classList.add('white-box');
+  slideUrl.classList.add('quote-box');
+  slideUrl.classList.add('slide-url');
 
-  updateOpacity({ currentSlide: document.querySelector('section.present') });
+  updateSlideUrl({ currentSlide: Reveal.getCurrentSlide() });
 
-  Reveal.on('slidechanged', updateOpacity);
+  Reveal.on('slidechanged', updateSlideUrl);
 
-  function updateOpacity({ currentSlide }) {
-    slideUrl.style.opacity = currentSlide.hasAttribute('data-show-slide-url') ? 1 : 0;
+  function updateSlideUrl({ currentSlide }) {
+    if (currentSlide.hasAttribute('data-show-slide-url')) {
+      slideUrl.innerHTML = `<span style='margin-right: 40px'>☞</span>https://<span style='font-weight: bold'>lukastaegert.github.io/devops-js</span>/#/${Reveal.getSlidePastCount()}`;
+      slideUrl.style.opacity = 1;
+    } else {
+      slideUrl.style.opacity = 0;
+    }
   }
 }

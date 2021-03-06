@@ -19,13 +19,11 @@ export class CodeMirrorContainer extends HTMLElement {
   }
 
   _resizeCodeMirrors() {
-    const slides = document.querySelector('.slides');
-    const scaleFactorMatch = slides.style.transform.match(/scale\(([^)]+)\)/);
-    const scaleFactor = scaleFactorMatch ? Number(scaleFactorMatch[1]) : 1;
+    const transform = `scale(${1 / Reveal.getScale()})`;
     for (const element of this.querySelectorAll(
       '.slides .CodeMirror-cursors, .CodeMirror-measure:nth-child(2) + div'
     )) {
-      element.style.transform = `scale(${1 / scaleFactor})`;
+      element.style.transform = transform;
       element.style.transformOrigin = `0 0`;
     }
     this._refreshCodeMirrors();

@@ -155,6 +155,7 @@ console.log(\`Built for $\{env}.\`);`
   buildInformation: {
     config: `export default {
   input: 'main.js',
+  external: ['/build.js'],
   plugins: [{
     generateBundle(options, bundle) {
     }
@@ -168,14 +169,13 @@ console.log(\`Built for $\{env}.\`);`
   external: ['/build.js'],
   plugins: [{
     generateBundle(options, bundle) {
-      this.emitFile({ type: 'asset',
-        fileName: 'build.js', source:
-        \`export const files = \\\`\${
-          Object.keys(bundle)
-          .map(name => \`\${name}: \${
-          bundle[name].code.length}\`)
-          .join(',\\n')
-        }\\\`;\`});
+      this.emitFile({
+        type: 'asset',
+        fileName: 'build.js',
+        source: \`export const files =
+'\${Object.keys(bundle).map(name =>
+\`\${name}: \${bundle[name].code.length}\`)
+        }';\`});
     }
   }],
   output: {
